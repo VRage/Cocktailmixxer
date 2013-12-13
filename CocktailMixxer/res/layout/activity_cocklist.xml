@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ActivityCocktailList" >
+
+    <TextView
+        android:id="@+id/list_textView"
+        style="@style/MenuText"
+        android:text="Cocktail List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+       
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/user_editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/main_btnCocktails"
+        style="@style/Buttonstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/user_editTextName"
+        android:layout_alignBottom="@+id/user_editTextName"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/user_editTextName"
+        android:text="@string/butteon_Search" />
+
+    <Button
+        android:id="@+id/cocktails_btnNewCocktail"
+        style="@style/Buttonstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_btnCocktails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/button_MakeNew" />
+
+    <ListView
+        android:id="@+id/cocktaillist_ListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cocktails_btnNewCocktail"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/list_textView" >
+
+    </ListView>
+
+</RelativeLayout>

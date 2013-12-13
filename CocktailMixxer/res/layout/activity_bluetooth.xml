@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_horizontal"
+    android:gravity="top" >
+
+    <ListView
+        android:id="@+id/saftlist_ListViewCocktails"
+        android:layout_width="wrap_content"
+        android:layout_height="228dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/newcocktail_textView_menge" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/user_fahren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/saftlist_ListViewCocktails"
+        android:text="@string/bluetooth_textviewPreFoundDevices" />
+
+    <ListView
+        android:id="@+id/bluetooth_ListViewOldDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_above="@+id/bluetooth_btnSearch"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/user_fahren" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/newcocktail_textView_menge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/list_textView"
+        android:text="@string/bluetooth_textviewDevices" />
+
+    <TextView
+        android:id="@+id/list_textView"
+        style="@style/MenuText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/button_Bluetooth"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/bluetooth_btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/butteon_Search" />
+
+</RelativeLayout>
