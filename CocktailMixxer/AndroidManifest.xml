@@ -38,6 +38,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="Bluetooth.DeviceListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="TermPreferences" />
+        <activity
             android:name="projekt.Activitys.ActivityCocktailList"
             android:configChanges="orientation"
             android:label="@string/title_activity_cocktails"
@@ -84,8 +90,8 @@
         </activity>
         <activity
             android:name="actual_working.ActivityAddSaft"
-            android:label="@string/title_activity_activity_saft_list" 
-             android:windowSoftInputMode="stateHidden">
+            android:label="@string/title_activity_activity_saft_list"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="actual_working.NewSaft"

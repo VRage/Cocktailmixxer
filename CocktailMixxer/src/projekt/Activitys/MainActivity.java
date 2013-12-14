@@ -40,6 +40,13 @@ public class MainActivity extends Activity {
 	Spinner spinnerUser;
 	List<RowItem> users;
 	public final static String APP_PATH_SD_APPLICATION = "/cocktailmixxer/";
+	public static final int MESSAGE_STATE_CHANGE = 1;
+	public static final int MESSAGE_READ = 2;
+	public static final int MESSAGE_WRITE = 3;
+	public static final int MESSAGE_DEVICE_NAME = 4;
+	public static final int MESSAGE_TOAST = 5;
+	public static final String DEVICE_NAME = "CocktailMixer";
+	public static final String TOAST = "toast";
 	static String fullPath = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_APPLICATION;
 
@@ -81,8 +88,7 @@ public class MainActivity extends Activity {
 		adapter = new CustomListViewAdapter(this, R.layout.activity_listitem,
 				users);
 		spinnerUser.setAdapter(adapter);
-		spinnerUser.setSelection(adapter.getPosition(status
-				.get_ActiveUser()));
+		spinnerUser.setSelection(adapter.getPosition(status.get_ActiveUser()));
 		// Define Button **Cocktails** and On Click Action
 		Button btn_CocktailListe = (Button) findViewById(R.id.main_btnCocktails);
 		btn_CocktailListe.setOnClickListener(new OnClickListener() {
@@ -149,42 +155,42 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_user);
 	}
 
-//	public static boolean saveStatus(CM_Status status) {
-//		try {
-//			File statusFile = new File(fullPath, "cm_status.dat");
-//			statusFile.createNewFile();
-//			FileOutputStream fos = new FileOutputStream(statusFile);
-//			ObjectOutputStream oos = new ObjectOutputStream(fos);
-//			oos.writeObject(status);
-//			oos.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//
-//		return true;
-//	}
-//
-//	public static CM_Status getStatus() { // Changed new method
-//		File statusFile = new File(fullPath, "cm_status.dat");
-//		if (statusFile.exists()) {
-//			try {
-//
-//				FileInputStream fis = new FileInputStream(statusFile);
-//				ObjectInputStream is = new ObjectInputStream(fis);
-//				Object readObject = is.readObject();
-//				is.close();
-//
-//				if (readObject != null && readObject instanceof CM_Status) {
-//					return (CM_Status) readObject;
-//				}
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} catch (ClassNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return null;
-//	}
+	// public static boolean saveStatus(CM_Status status) {
+	// try {
+	// File statusFile = new File(fullPath, "cm_status.dat");
+	// statusFile.createNewFile();
+	// FileOutputStream fos = new FileOutputStream(statusFile);
+	// ObjectOutputStream oos = new ObjectOutputStream(fos);
+	// oos.writeObject(status);
+	// oos.close();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// return false;
+	// }
+	//
+	// return true;
+	// }
+	//
+	// public static CM_Status getStatus() { // Changed new method
+	// File statusFile = new File(fullPath, "cm_status.dat");
+	// if (statusFile.exists()) {
+	// try {
+	//
+	// FileInputStream fis = new FileInputStream(statusFile);
+	// ObjectInputStream is = new ObjectInputStream(fis);
+	// Object readObject = is.readObject();
+	// is.close();
+	//
+	// if (readObject != null && readObject instanceof CM_Status) {
+	// return (CM_Status) readObject;
+	// }
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// } catch (ClassNotFoundException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// return null;
+	// }
 
 }
