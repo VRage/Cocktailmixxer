@@ -5,24 +5,23 @@
  */
 package projekt.Activitys;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
 
+import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.User;
 import OwnList.CustomListViewAdapter;
 import OwnList.RowItem;
 import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -31,10 +30,48 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
 
 public class MainActivity extends Activity {
+	
+	
+	// Layout view
+	private TextView mTitle;
+	
+	// Intent request codes
+    private static final int REQUEST_CONNECT_DEVICE = 1;
+    private static final int REQUEST_ENABLE_BT = 2;
+    
+    // Message types sent from the BluetoothChatService Handler
+    public static final int MESSAGE_STATE_CHANGE = 1;
+    public static final int MESSAGE_READ = 2;
+    public static final int MESSAGE_WRITE = 3;
+    public static final int MESSAGE_DEVICE_NAME = 4;
+    public static final int MESSAGE_TOAST = 5;
+    
+    // Key names received from the BluetoothCommandService Handler
+    public static final String DEVICE_NAME = "device_name";
+    public static final String TOAST = "toast";
+	
+	// Name of the connected device
+    private String mConnectedDeviceName = null;
+    // Local Bluetooth adapter
+    private BluetoothAdapter mBluetoothAdapter = null;
+    // Member object for Bluetooth Command Service
+    private BluetoothSerialService mCommandService = null;
+	
+	
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (mCommandService==null)
+			setupCommand();
+	}
+
 	CM_Status status;
 	CustomListViewAdapter adapter;
 	Spinner spinnerUser;
@@ -67,16 +104,23 @@ public class MainActivity extends Activity {
 			spinnerUser.setVisibility(View.VISIBLE);
 			spinnerUser.setSelection(users.indexOf(status.get_ActiveUser()));
 		}
-
+		
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		
+        // Set up the custom title
+        mTitle = (TextView) findViewById(R.id.title_left_text);
+        mTitle.setText(R.string.app_name);
+        mTitle = (TextView) findViewById(R.id.title_right_text);
+  	
 		status = (CM_Status) getApplicationContext();
 		status.loadAll();
 		users = status.get_UserList();
-		setContentView(R.layout.activity_main);
 		spinnerUser = (Spinner) findViewById(R.id.main_spinnerUsers);
 		adapter = new CustomListViewAdapter(this, R.layout.activity_listitem,
 				users);
@@ -106,8 +150,8 @@ public class MainActivity extends Activity {
 		btn_Bluetooth.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(MainActivity.this,
-						ActivityBluetooth.class));
+				startActivityForResult(new Intent(MainActivity.this,
+						ActivityBluetooth.class), 1);
 			}
 
 		});
@@ -149,6 +193,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_user);
 	}
 
+
 //	public static boolean saveStatus(CM_Status status) {
 //		try {
 //			File statusFile = new File(fullPath, "cm_status.dat");
@@ -186,5 +231,67 @@ public class MainActivity extends Activity {
 //		}
 //		return null;
 //	}
-
+	private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            case MESSAGE_STATE_CHANGE:
+                switch (msg.arg1) {
+                case BluetoothSerialService.STATE_CONNECTED:
+                    mTitle.setText(R.string.title_connected_to);
+                    mTitle.append(mConnectedDeviceName);
+                    break;
+                case BluetoothSerialService.STATE_CONNECTING:
+                    mTitle.setText(R.string.title_connecting);
+                    break;
+                case BluetoothSerialService.STATE_LISTEN:
+                case BluetoothSerialService.STATE_NONE:
+                    mTitle.setText(R.string.title_not_connected);
+                    break;
+                }
+                break;
+            case MESSAGE_DEVICE_NAME:
+                // save the connected device's name
+                mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                Toast.makeText(getApplicationContext(), "Connected to "
+                               + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+                break;
+            case MESSAGE_TOAST:
+                Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
+                               Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+    };
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+        case REQUEST_CONNECT_DEVICE:
+            // When DeviceListActivity returns with a device to connect
+            if (resultCode == Activity.RESULT_OK) {
+                // Get the device MAC address
+                String address = data.getExtras()
+                                     .getString(ActivityBluetooth.EXTRA_DEVICE_ADDRESS);
+                // Get the BLuetoothDevice object
+                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                // Attempt to connect to the device
+                mCommandService.connect(device);
+            }
+            break;
+        case REQUEST_ENABLE_BT:
+            // When the request to enable Bluetooth returns
+            if (resultCode == Activity.RESULT_OK) {
+                // Bluetooth is now enabled, so set up a chat session
+                setupCommand();
+            } else {
+                // User did not enable Bluetooth or an error occured
+                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+	private void setupCommand() {
+		// Initialize the BluetoothChatService to perform bluetooth connections
+        mCommandService = new BluetoothSerialService(this, mHandler);
+	}
 }
