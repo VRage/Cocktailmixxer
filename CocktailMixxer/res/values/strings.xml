@@ -40,5 +40,6 @@
     <string name="MlLeft">Verfügbare Menge:</string>
     <string name="mlAct">Aktuelle Menge:</string>
     <string name="MlLeftValue">500</string>
+    <string name="title_bluetooth">Bluetooth</string>
 
 </resources>
