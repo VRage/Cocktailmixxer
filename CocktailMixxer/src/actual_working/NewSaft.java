@@ -9,7 +9,7 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class NewSaft extends Activity {
-
+	// Nur ein Test 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
