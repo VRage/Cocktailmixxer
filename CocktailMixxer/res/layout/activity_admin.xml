@@ -101,6 +101,18 @@
                 android:layout_weight="0.25"
                 android:text="Bottle8" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="114dp"
+            android:layout_marginLeft="17dp"
+            android:layout_toRightOf="@+id/list_textView"
+            android:text="Button"
+            android:onClick="test" />
+
     </RelativeLayout>
 
 </RelativeLayout>

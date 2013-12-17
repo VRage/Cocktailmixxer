@@ -37,7 +37,15 @@ public class CM_Status extends Application implements Serializable {
 	User activeUser = null;
 	private static int Userid = 100;
 	Cocktail activeCocktail;
+	private BluetoothSerialService BTservice;
 	
+	public BluetoothSerialService getBTservice() {
+		return BTservice;
+	}
+	public void setBTservice(BluetoothSerialService bTservice) {
+		BTservice = bTservice;
+	}
+
 	List<? super Object> status = new ArrayList<Object>();
 	List<? super User> UserList = (List<User>) new ArrayList<User>();
 	List<? super Cocktail> CocktailList = (List<Cocktail>) new ArrayList<Cocktail>();

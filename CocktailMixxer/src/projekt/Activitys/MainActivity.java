@@ -304,5 +304,6 @@ public class MainActivity extends Activity {
 	private void setupCommand() {
 		// Initialize the BluetoothChatService to perform bluetooth connections
         mCommandService = new BluetoothSerialService(this, mHandler);
+        status.setBTservice(mCommandService);
 	}
 }
