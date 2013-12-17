@@ -10,9 +10,5 @@ public class ActivityAdmin extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
 	}
-	 protected void onStart() {
-	        // TODO Auto-generated method stub
-	        super.onStart();
-	        
-	    }
+
 }

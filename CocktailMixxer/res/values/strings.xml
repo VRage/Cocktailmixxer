@@ -44,5 +44,6 @@
     <string name="title_connected_to">Verbunden mit</string>
     <string name="title_connecting">Verbindungsaufbau</string>
     <string name="title_not_connected">Nicht verbunden</string>
+    <string name="Admin">Admin</string>
 
 </resources>

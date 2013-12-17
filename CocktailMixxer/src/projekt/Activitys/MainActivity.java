@@ -13,17 +13,16 @@ import projekt.helpclasses.User;
 import OwnList.CustomListViewAdapter;
 import OwnList.RowItem;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -81,8 +80,8 @@ public class MainActivity extends Activity {
 			.getAbsolutePath() + APP_PATH_SD_APPLICATION;
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
+		
+		getMenuInflater().inflate(R.menu.context_menu, menu);
 
 		return true;// return true so to menu pop up is opens
 
@@ -114,9 +113,8 @@ public class MainActivity extends Activity {
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
         // Set up the custom title
-        mTitle = (TextView) findViewById(R.id.title_left_text);
+		mTitle = (TextView) findViewById(R.id.title_right_text);
         mTitle.setText(R.string.app_name);
-        mTitle = (TextView) findViewById(R.id.title_right_text);
   	
 		status = (CM_Status) getApplicationContext();
 		status.loadAll();
@@ -192,6 +190,16 @@ public class MainActivity extends Activity {
 	public void gotoBenutzer() {
 		setContentView(R.layout.activity_user);
 	}
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.admin:
+        	startActivityForResult((new Intent(MainActivity.this, ActivityAdmin.class)),0);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 //	public static boolean saveStatus(CM_Status status) {
@@ -240,13 +248,16 @@ public class MainActivity extends Activity {
                 case BluetoothSerialService.STATE_CONNECTED:
                     mTitle.setText(R.string.title_connected_to);
                     mTitle.append(mConnectedDeviceName);
+                    mTitle.setTextColor(Color.GREEN);
                     break;
                 case BluetoothSerialService.STATE_CONNECTING:
                     mTitle.setText(R.string.title_connecting);
+                    mTitle.setTextColor(Color.YELLOW);
                     break;
                 case BluetoothSerialService.STATE_LISTEN:
                 case BluetoothSerialService.STATE_NONE:
                     mTitle.setText(R.string.title_not_connected);
+                    mTitle.setTextColor(Color.RED);
                     break;
                 }
                 break;

@@ -1,10 +1,6 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-      <item android:id="@+id/edit"
-              android:title="@string/button_edit" />
-      <item android:id="@+id/delete"
-            android:title="@string/button_delete" />
-      <item android:id="@+id/view"
-            android:title="@string/button_show" />
+      <item android:id="@+id/admin"
+              android:title="@string/Admin"/>
 </menu>
 
