@@ -38,10 +38,11 @@ public class CM_Status extends Application implements Serializable {
 	private static int Userid = 100;
 	Cocktail activeCocktail;
 	private BluetoothSerialService BTservice;
-	
+
 	public BluetoothSerialService getBTservice() {
 		return BTservice;
 	}
+
 	public void setBTservice(BluetoothSerialService bTservice) {
 		BTservice = bTservice;
 	}
@@ -51,33 +52,36 @@ public class CM_Status extends Application implements Serializable {
 	List<? super Cocktail> CocktailList = (List<Cocktail>) new ArrayList<Cocktail>();
 	List<? super Saft> SaftList_intern = (List<Saft>) new ArrayList<Saft>();
 	List<? super Saft> SaftList_all = (List<Saft>) new ArrayList<Saft>();
-	
+
 	public final static String APP_PATH_SD_USERPICS = "/cocktailmixxer/userpics";
-	public final static String STATUS_FILENAME = "CM_Status"; // Changed new														// Parameter
+	public final static String STATUS_FILENAME = "CM_Status"; // Changed new //
+																// Parameter
 	String fullPathPic = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_USERPICS;
 	public final static String APP_PATH_SD_APPLICATION = "/cocktailmixxer/";
 	static String fullPath = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_APPLICATION;
 
-
-	public void saveAll(){
+	public void saveAll() {
 		try {
 			saveToSerFile("User", UserList);
 			saveToSerFile("Cocktail", CocktailList);
 			saveToSerFile("Saft", SaftList_all);
 			saveToSerFile("Status", status);
+			saveToSerFile("Safterintern", SaftList_intern);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public void loadAll(){
+
+	public void loadAll() {
 		try {
-			UserList =  (List<User>) loadFromSerFile("User");
-			CocktailList =  (List<Cocktail>) loadFromSerFile("Cocktail");
-			SaftList_all =  (List<Saft>) loadFromSerFile("Saft");
+			UserList = (List<User>) loadFromSerFile("User");
+			CocktailList = (List<Cocktail>) loadFromSerFile("Cocktail");
+			SaftList_all = (List<Saft>) loadFromSerFile("Saft");
 			status = (List<Object>) loadFromSerFile("Status");
+			SaftList_intern = (List<Saft>) loadFromSerFile("Saftintern");
 			getStatus();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -87,10 +91,11 @@ public class CM_Status extends Application implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
 	public static int getUserid() {
-		
+
 		return Userid;
-		
+
 	}
 
 	public static void inkUserid() {
@@ -110,20 +115,8 @@ public class CM_Status extends Application implements Serializable {
 	}
 
 	public List<RowItem> get_SaftList_all() {
-		return (List<RowItem>) SaftList_intern;
+		return (List<RowItem>) SaftList_all;
 	}
-
-	final String[] titles = new String[] { "Jacky Cola", "Mai-Tai",
-			"PinaColada", "Tequilla Sunrise" };
-
-	final String[] descriptions = new String[] {
-			"ungefährer Alkohol: 8 %\nAroma: Cola/Rum",
-			"ungefährer Alkohol: 16 %\nAroma: Limette",
-			"ungefährer Alkohol: 7 %\nAroma: Kokos",
-			"ungefährer Alkohol: 12 %\nAroma: Fruchtig" };
-
-	final Integer[] images = { R.drawable.jackycola, R.drawable.icon_cocktail,
-			R.drawable.pinacolada, R.drawable.tequilasunrise };
 
 	public User get_ActiveUser() {
 		return activeUser;
@@ -133,16 +126,16 @@ public class CM_Status extends Application implements Serializable {
 		this.activeUser = activeUser;
 		setStatus();
 	}
-	
-	public void setStatus(){
+
+	public void setStatus() {
 		status.clear();
 		status.add(0, activeUser);
 		status.add(1, Userid);
 		status.add(2, activeCocktail);
 	}
-	public void getStatus(){
-		if(status!=null && !status.isEmpty())
-		{
+
+	public void getStatus() {
+		if (status != null && !status.isEmpty()) {
 			activeUser = (User) status.get(0);
 			Userid = (Integer) status.get(1);
 			activeCocktail = (Cocktail) status.get(2);
@@ -150,15 +143,18 @@ public class CM_Status extends Application implements Serializable {
 	}
 
 	public CM_Status() {
-//		UserList.add(new User("MaxSchuster", 55.0, 155.0, true,
-//				new GregorianCalendar(1987, 06, 18)));
+		// UserList.add(new User("MaxSchuster", 55.0, 155.0, true,
+		// new GregorianCalendar(1987, 06, 18)));
+
 		SaftList_all.add(new Saft("Orangen Saft", "-"));
 		SaftList_all.add(new Saft("Red Bull", "-"));
 		SaftList_all.add(new Saft("Cola", "-"));
 		SaftList_all.add(new Saft("Ice Tee", "-"));
-		SaftList_intern = SaftList_all;
+		for (int i = 0; i < 8; i++) {
+			SaftList_intern.add(new Saft("",""));
+		}
 
-//		activeUser = (User) UserList.get(0);
+		// activeUser = (User) UserList.get(0);
 
 	}
 
@@ -199,49 +195,42 @@ public class CM_Status extends Application implements Serializable {
 		this.activeCocktail = activeCocktail;
 		setStatus();
 	}
-	
-	public synchronized void saveToSerFile (String name, List<? extends Object> obj) throws IOException { 
-        try
-        {
 
-            // save to file
-            File file = new File(fullPath, name+ ".dat");
-            if (file.exists())
-            {
-                file.delete();
-            }
+	public synchronized void saveToSerFile(String name,
+			List<? extends Object> obj) throws IOException {
+		try {
 
-            file.getParentFile().mkdirs();
-            file.createNewFile();
-            
-            FileOutputStream fos = new FileOutputStream(file); 
-            ObjectOutputStream oos = new ObjectOutputStream(fos); 
-            oos.writeObject(obj); 
-            oos.close();
+			// save to file
+			File file = new File(fullPath, name + ".dat");
+			if (file.exists()) {
+				file.delete();
+			}
 
+			file.getParentFile().mkdirs();
+			file.createNewFile();
 
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(obj);
+			oos.close();
 
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 
-        }
-	} 
+		} catch (IOException e) {
+			e.printStackTrace();
 
+		}
+	}
 
-	public synchronized Object loadFromSerFile(String name) throws IOException, ClassNotFoundException {
-		File file = new File(fullPath, name+".dat");
-			 FileInputStream fis = new FileInputStream(file); 
-			 ObjectInputStream ois = new ObjectInputStream(fis); 
-			 Object result =  ois.readObject(); 
-			 ois.close(); 
-			 return result; 
-			} 
-
+	public synchronized Object loadFromSerFile(String name) throws IOException,
+			ClassNotFoundException {
+		File file = new File(fullPath, name + ".dat");
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		Object result = ois.readObject();
+		ois.close();
+		return result;
+	}
 
 }

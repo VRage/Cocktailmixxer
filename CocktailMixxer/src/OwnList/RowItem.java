@@ -1,14 +1,8 @@
 package OwnList;
 
-import java.io.IOException;
 import java.io.Serializable;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import android.os.DropBoxManager.Entry;
-
-public class RowItem implements Serializable{
+public class RowItem implements Serializable,Cloneable{
 	/**
 	 * 
 	 */

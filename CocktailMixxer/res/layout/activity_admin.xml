@@ -68,6 +68,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -103,15 +104,25 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/test"
+            android:id="@+id/admin_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="114dp"
-            android:layout_marginLeft="17dp"
-            android:layout_toRightOf="@+id/list_textView"
-            android:text="Button"
-            android:onClick="test" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:text="Clear"
+            android:onClick="clearList" />
+
+        <ListView
+            android:id="@+id/admin_saftintern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/admin_clear"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_marginTop="57dp" >
+
+        </ListView>
 
     </RelativeLayout>
 

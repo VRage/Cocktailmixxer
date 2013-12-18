@@ -84,8 +84,8 @@
         </activity>
         <activity
             android:name="actual_working.ActivityAddSaft"
-            android:label="@string/title_activity_activity_saft_list" 
-             android:windowSoftInputMode="stateHidden">
+            android:label="@string/title_activity_activity_saft_list"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="actual_working.NewSaft"
@@ -94,6 +94,12 @@
         <activity
             android:name="com.example.cocktailmixxer.ActivitySetMlSaft"
             android:label="@string/title_activity_add_saft" >
+        </activity>
+        <activity
+            android:name="projekt.Activitys.SelectSaftActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_select_saft"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
