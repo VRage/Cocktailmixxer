@@ -30,8 +30,9 @@ public class Cocktail extends RowItem implements Serializable{
 	static String desc;
 	//List<Saft> Saefte;
 	int MixIDList;
-	int mlLeft;
+
 	final public int cocktailsize = 500;
+	int mlLeft=cocktailsize;
 	List<? super Saft> SaftList_cocktail;
 	Saft activeSaft;
 	public Saft getActiveSaft() {
@@ -89,8 +90,11 @@ public class Cocktail extends RowItem implements Serializable{
 
 	public void addSaft(Saft saft) {
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
-			if(((Saft)SaftList_cocktail.get(i)).getTitle()==saft.getTitle())
+			if(((Saft)SaftList_cocktail.get(i)).getTitle()==saft.getTitle()){
+				mlLeft = mlLeft;
 				SaftList_cocktail.remove(i);
+				
+			}
 		}
 		SaftList_cocktail.add(saft);
 	}

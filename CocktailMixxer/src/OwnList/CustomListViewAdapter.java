@@ -43,7 +43,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		// Toast.LENGTH_SHORT).show();
 		if (rowItem instanceof Saft){
 			if (getContext().getClass().getSimpleName()
-					.equals("ActivitySaftList"))
+					.equals("ActivityAddSaft"))
 				// Toast.makeText(getContext(), "true",
 				// Toast.LENGTH_SHORT).show();
 				holder.txtDesc.setText("SaftList");
