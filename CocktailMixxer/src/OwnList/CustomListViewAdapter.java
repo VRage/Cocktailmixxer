@@ -28,7 +28,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ViewHolder holder = null;
+	ViewHolder holder;
 	Context context;
 	public final static String APP_PATH_SD_CARD = "/cocktailmixxer/userpics";
 	String fullPath = Environment.getExternalStorageDirectory()
@@ -104,10 +104,11 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 			holder = (ViewHolder) convertView.getTag();
 
 		// holder.txtDesc.setText(rowItem.getDesc());
+		if(rowItem!=null){
 		holder.txtTitle.setText(rowItem.getTitle());
 		setDesc(rowItem);
 		setImage(rowItem);
-
+		}
 		return convertView;
 	}
 
@@ -129,10 +130,11 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 			holder = (ViewHolder) convertView.getTag();
 
 		// holder.txtDesc.setText(rowItem.getDesc());
+		if(rowItem!=null){
 		holder.txtTitle.setText(rowItem.getTitle());
 		setDesc(rowItem);
 		setImage(rowItem);
-
+		}
 		return convertView;
 	}
 

@@ -18,23 +18,22 @@ import com.example.cocktailmixxer.R;
 
 public class ActivityAdmin extends Activity implements OnClickListener {
 	CM_Status status;
-	BluetoothSerialService service;
 	List<RowItem> safte;
 	ListView saftlist_intern;
-	Button b1, b2, b3, b4, b5, b6, b7, b8;
+	static Button b1, b2, b3, b4, b5, b6, b7, b8;
 	CustomListViewAdapter adapter;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
 		status = (CM_Status) getApplicationContext();
-		service = status.getBTservice();
+
 		saftlist_intern = (ListView) findViewById(R.id.admin_saftintern);
 		safte = status.get_SaftList_intern();
 
 		adapter = new CustomListViewAdapter(this,R.layout.activity_listitem, safte);
 		saftlist_intern.setAdapter(adapter);
-		
+	
 
 		b1 = (Button) findViewById(R.id.admin_behalter1);
 		b2 = (Button) findViewById(R.id.admin_behalter2);
@@ -54,9 +53,17 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		b7.setOnClickListener(this);
 		b8.setOnClickListener(this);
 		
-		adapter.notifyDataSetChanged();
+		
 	}
 	
+
+
+	@Override
+	protected void onResume() {
+		adapter.notifyDataSetChanged();
+		super.onResume();
+	}
+
 
 
 	public void onClick(View v)
@@ -100,7 +107,11 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 	}
 	public void clearList(View view)
 	{
-		safte.clear();
+		for(int i=0;i<8;i++){
+			
+			safte.set(i, null);
+		}
 		adapter.notifyDataSetChanged();
+		
 	}
 }

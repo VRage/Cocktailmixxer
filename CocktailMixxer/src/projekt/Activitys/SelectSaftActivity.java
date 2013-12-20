@@ -33,17 +33,18 @@ public class SelectSaftActivity extends Activity {
 		safte = status.get_SaftList_all();
 		safte_intern = status.get_SaftList_intern();
 		adapter = new CustomListViewAdapter(this,R.layout.activity_listitem, safte);
-		saftlist_all.setAdapter(adapter);
-		Intent sender=getIntent();
-        String extraData=sender.getExtras().getString("Bottlenumber");
-        final int bottlenumber = Integer.parseInt(extraData);
-        Toast.makeText(getApplicationContext(), ""+bottlenumber, Toast.LENGTH_LONG).show();
+		saftlist_all.setAdapter(adapter);       
+        
+        
 		saftlist_all.setOnItemClickListener(new OnItemClickListener() {
 
+			Intent sender=getIntent();
+			String extraData=sender.getExtras().getString("Bottlenumber");
+			int bottlenumber = Integer.parseInt(extraData);
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				safte_intern.set(bottlenumber-1, (Saft) saftlist_all.getSelectedItem());
+				safte_intern.set(bottlenumber-1, (Saft) saftlist_all.getAdapter().getItem(arg2));
 				finish();
 			}
 		});

@@ -113,6 +113,10 @@ public class CM_Status extends Application implements Serializable {
 	public List<RowItem> get_SaftList_intern() {
 		return (List<RowItem>) SaftList_intern;
 	}
+	
+	public void set_SaftList_intern(List<RowItem> list){
+		List<RowItem> SaftList_intern = list;
+	}
 
 	public List<RowItem> get_SaftList_all() {
 		return (List<RowItem>) SaftList_all;
@@ -151,7 +155,7 @@ public class CM_Status extends Application implements Serializable {
 		SaftList_all.add(new Saft("Cola", "-"));
 		SaftList_all.add(new Saft("Ice Tee", "-"));
 		for (int i = 0; i < 8; i++) {
-			SaftList_intern.add(new Saft("",""));
+			SaftList_intern.add(null);
 		}
 
 		// activeUser = (User) UserList.get(0);
