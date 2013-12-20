@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityCocktail" >
-<ImageView
+
+    <ImageView
         android:id="@+id/icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -15,49 +16,48 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 
-<Button
-    android:id="@+id/newCocktail_btnNewSaft"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentRight="true"
-    android:text="@string/button_order" />
+    <TextView
+        android:id="@+id/cocktail_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignTop="@+id/icon"
+        android:text="Cocktail Name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-<TextView
-    android:id="@+id/cocktail_header"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/textView2"
-    android:layout_alignTop="@+id/icon"
-    android:text="Cocktail Name"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cocktail_header"
+        android:layout_toRightOf="@+id/icon"
+        android:text="Beschreibung"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-<TextView
-    android:id="@+id/textView2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/cocktail_header"
-    android:layout_toRightOf="@+id/icon"
-    android:text="Beschreibung"
-    android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/icon"
+        android:text="Enthaltene Getränke:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-<TextView
-    android:id="@+id/textView3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_below="@+id/icon"
-    android:text="Enthaltene Getränke:"
-    android:textAppearance="?android:attr/textAppearanceSmall" />
+    <ListView
+        android:id="@+id/Cocktail_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Cocktail_btnOrder"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3" >
+    </ListView>
 
-<ListView
-    android:id="@+id/Cocktail_ListView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/newCocktail_btnNewSaft"
-    android:layout_alignLeft="@+id/textView3"
-    android:layout_below="@+id/textView3" >
-
-</ListView>
+    <Button
+        android:id="@+id/Cocktail_btnOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/button_order" />
 
 </RelativeLayout>

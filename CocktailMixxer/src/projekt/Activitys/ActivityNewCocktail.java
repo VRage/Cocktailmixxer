@@ -4,6 +4,7 @@ import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;
 import OwnList.CustomListViewAdapter;
 import actual_working.ActivityAddSaft;
+import actual_working.Saft;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -41,7 +42,7 @@ public class ActivityNewCocktail extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newcocktail);
 		Icon = (ImageView) findViewById(R.drawable.cocktail_icon_lol);
-		newSaft = (Button) findViewById(R.id.newCocktail_btnNewSaft);
+		newSaft = (Button) findViewById(R.id.Cocktail_btnOrder);
 		SaefteCocktail = (ListView) findViewById(R.id.newCocktail_listSaefte);
 		status = (CM_Status) getApplicationContext();
 		status.set_ActiveCocktail(buildetCocktail);
@@ -56,6 +57,16 @@ public class ActivityNewCocktail extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				status.set_ActiveCocktail(buildetCocktail);
+				// Hole angeklickten saft 
+				Saft safttemp = (Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2);
+				//Reseten der ml 
+				status.get_ActiveCocktail()
+						.setMlLeft(
+								status.get_ActiveCocktail().getMlLeft()+safttemp.getMl()
+								);
+				((Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2)).setMl(0);
+						
 				startActivity(new Intent(ActivityNewCocktail.this,
 						ActivitySetMlSaft.class));
 

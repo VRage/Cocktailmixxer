@@ -46,13 +46,15 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 					.equals("ActivityAddSaft"))
 				// Toast.makeText(getContext(), "true",
 				// Toast.LENGTH_SHORT).show();
-				holder.txtDesc.setText("SaftList");
+				holder.txtDesc.setText(rowItem.getDesc());
 			else
 				// holder.txtDesc.setText(((Saft) rowItem).getProcent());
-				holder.txtDesc.setText("Prozent: "+((Saft) rowItem).getProcent()+"\nMl Anteil: "+((Saft) rowItem).getMl());
+				holder.txtDesc.setText("\nml Anteil im Cocktail: \n"+((Saft) rowItem).getMl()+"/500 ml");
 		}
 			else
 				holder.txtDesc.setText(rowItem.getDesc());
+	
+			
 	}
 
 	public void setImage(RowItem rowItem) {

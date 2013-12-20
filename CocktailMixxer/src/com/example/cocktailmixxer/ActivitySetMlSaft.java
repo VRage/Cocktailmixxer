@@ -25,24 +25,26 @@ public class ActivitySetMlSaft extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_addsaft);
-
+		
 		status = (CM_Status) getApplicationContext();
 		seekbarValueMl = (SeekBar) findViewById(R.id.addSaft_seekbar);
 		saft = status.get_ActiveCocktail().getActiveSaft();
-
+		
 		MlLeft = (TextView) findViewById(R.id.addSaft_textViewMlLeft);
 		MlActual = (TextView) findViewById(R.id.addSaft_textViewMlActual);
 		NewSaft = (Button) findViewById(R.id.addSaft_ButtonNewSaft);
 		cocktail = status.get_ActiveCocktail();
+		
 
 		// Setze menge auf Progress
 		seekbarValueMl.setProgress(cocktail.cocktailsize-cocktail.getMlLeft());
-
+		int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
 		// Set default text of textView
-		MlLeft.setText("Verfügbare Menge:" + cocktail.getMlLeft());
-		MlActual.setText("Aktuelle Menge:" + seekbarValueMl.getProgress());
+		MlLeft.setText("Verfügbare Menge:" +(cocktail.cocktailsize- cocktail.getMlLeft()));
+		MlActual.setText("Aktuelle Menge:" + Progress);
 
 		seekbarValueMl
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -52,7 +54,8 @@ public class ActivitySetMlSaft extends Activity {
 					public void onStopTrackingTouch(SeekBar seekBar) {
 						// TODO Auto-generated method stub
 						int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-MlLeftv);
-						//Die Progressbar darf nicht 
+
+						//Die Progressbar darf nicht weniger werden als der Cocktail schon zur verfügung hat 
 						if (Progress < 0)
 							seekbarValueMl.setProgress(cocktail.cocktailsize-MlLeftv);
 					}
@@ -66,18 +69,13 @@ public class ActivitySetMlSaft extends Activity {
 					@Override
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
-						// int MlLeftint= (int)
-						// ((double)saft.getProcent()*status.get_Cocktailsize()/100);
-
 						// hole aktuellen Prozessstatus
 						int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-MlLeftv);
 						
 
 						// Grenzen setzen darf nicht kleiner sein als aktuell
 						// noch verfügbar und nicht größer sein als cocktail
-						
-//						else if (Progress >= cocktailsize)
-//							seekbarValueMl.setProgress(cocktailsize);
+
 
 						// Setze textfelder
 						MlLeft.setText("Verfügbare Menge:\t\t"
@@ -87,21 +85,31 @@ public class ActivitySetMlSaft extends Activity {
 					}
 
 				});
+		
+
+
 		NewSaft.setOnClickListener(new OnClickListener() {
+
+			/*
+			 * Setze On ClickListener für "Neu Anlegen
+			 * 
+			 * Setzt interne SaftMl auf den Progress wert 
+			 * Setzt Die Die Verbleibenden Ml des Cocktails 
+			 * Addet den Saft zur cocktailListe 
+			 */
+
+
 
 			@Override
 			public void onClick(View v) {
 				int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
 				
 				
+				Toast.makeText(getApplicationContext(), Progress+"", Toast.LENGTH_LONG).show();
+				saft.setMl(Progress);
 				cocktail.setMlLeft(cocktail.getMlLeft()-Progress);
-				// double procent =
-				// 100.0/status.get_Cocktailsize()*ValueMl.getProgress();
-				// saft.setProcent(procent);
-				// Toast.makeText(getApplicationContext(), procent+"",
-				// Toast.LENGTH_LONG);
-				// status.set_MlLeft(status.get_MlLeft()/*+(int)(saft.getProcent()/100*status.get_Cocktailsize())*/-ValueMl.getProgress());
-				// //saft.setDescList();
+
+
 				cocktail.addSaft((Saft) saft);
 				finish();
 			}
