@@ -82,8 +82,8 @@
                 android:id="@+id/newCocktail_btnNewSaft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_newSaft" 
-                android:onClick="newCocktail_OnClick_newSaft"/>
+                android:onClick="newCocktail_OnClick_newSaft"
+                android:text="@string/button_newSaft" />
 
             <FrameLayout
                 android:layout_width="match_parent"

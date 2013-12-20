@@ -27,7 +27,7 @@ public class ActivityAddSaft extends Activity {
 		status = (CM_Status)getApplicationContext();
 		lw = (ListView) findViewById(R.id.saftlist_ListView);
 		CLW = new CustomListViewAdapter(this, R.layout.activity_listitem,
-				status.get_SaftList_intern());
+				status.get_SaftList_all());
 		lw.setAdapter(CLW);
 		
 		
@@ -38,7 +38,7 @@ public class ActivityAddSaft extends Activity {
 					long arg3) {
 				Saft temp=null;
 				try {
-					temp = (Saft) ((Saft) status.get_SaftList_intern().get(arg2)).clone();
+					temp = (Saft) ((Saft) status.get_SaftList_all().get(arg2)).clone();
 				} catch (CloneNotSupportedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

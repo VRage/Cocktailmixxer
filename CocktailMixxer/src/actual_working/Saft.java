@@ -26,15 +26,17 @@ public class Saft extends RowItem implements Serializable,Cloneable{
 	 */
 	private static final long serialVersionUID = 1L;
 	public Saft(String title, String description) {
-		super(imageId, title, "-");
+		super(imageId, title, description);
 		// TODO Auto-generated constructor stub
 	}
 	
 	private int S_ID;
 	private int procent=0;
+	
+	//Wert an ml im spziefischem Cocktail 
 	private int ml =0;
 	public int getMl() {
-		return procent*500/100;
+		return ml;
 	}
 
 	public void setMl(int ml) {
@@ -43,17 +45,11 @@ public class Saft extends RowItem implements Serializable,Cloneable{
 
 	private String Name;
 	private String decs;
-	public int getProcent() {
-		return procent;
-	}
 	public Object clone() throws CloneNotSupportedException
     {
         /* Hier wird die Methode clone der Superklasse(in diesem Falle Object) aufgerufen. */
         return super.clone();
     }
-	public void setProcent(int procent) {
-		this.procent = procent;
-	}
 
 	static int imageId=R.drawable.saeft_icon;
 	private double AlkGehalt;

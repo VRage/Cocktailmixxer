@@ -33,8 +33,17 @@ public class Cocktail extends RowItem implements Serializable{
 
 	final public int cocktailsize = 500;
 	int mlLeft=cocktailsize;
+	int mlFull=0;
 	List<? super Saft> SaftList_cocktail;
 	Saft activeSaft;
+	//Gibt bytes zurück die per bluetooth gesendet werden
+	public byte[] getBluetoothSignal() {
+		String returnStr = "";
+		for (int i = 0; i < SaftList_cocktail.size(); i++) {
+			returnStr+="  "+((Saft) SaftList_cocktail.get(i)).getMl();
+		}
+		return returnStr.getBytes();
+	}
 	public Saft getActiveSaft() {
 		return activeSaft;
 	}
@@ -91,7 +100,7 @@ public class Cocktail extends RowItem implements Serializable{
 	public void addSaft(Saft saft) {
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
 			if(((Saft)SaftList_cocktail.get(i)).getTitle()==saft.getTitle()){
-				mlLeft = mlLeft;
+				
 				SaftList_cocktail.remove(i);
 				
 			}
