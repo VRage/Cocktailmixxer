@@ -36,6 +36,7 @@ public class ActivityCocktail extends Activity {
 				status.get_ActiveCocktail().get_SaftList_cocktail());
 		lw.setAdapter(CLVA);
 		order = (Button) findViewById(R.id.Cocktail_btnOrder);
+		//dsafdsaf
 		Header = (TextView)findViewById(R.id.cocktail_header);
 		Header.setText(status.get_ActiveCocktail().getTitle());
 		lw.setOnItemClickListener(new OnItemClickListener() {
