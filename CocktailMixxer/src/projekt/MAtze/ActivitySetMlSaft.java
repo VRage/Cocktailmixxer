@@ -1,8 +1,8 @@
-package com.example.cocktailmixxer;
+package projekt.MAtze;
 
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;
-import actual_working.Saft;
+import projekt.helpclasses.Saft;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.cocktailmixxer.R;
 
 public class ActivitySetMlSaft extends Activity {
 	CM_Status status;

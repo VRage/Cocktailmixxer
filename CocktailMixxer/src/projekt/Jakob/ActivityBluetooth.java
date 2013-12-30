@@ -1,7 +1,8 @@
-package projekt.Activitys;
+package projekt.Jakob;
 
 import java.util.Set;
 
+import projekt.Activitys.MainActivity;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

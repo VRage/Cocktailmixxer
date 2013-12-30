@@ -24,7 +24,7 @@
         android:name="projekt.helpclasses.CM_Status"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="projekt.Activitys.MainActivity"
@@ -38,65 +38,65 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivityCocktailList"
+            android:name="projekt.MAtze.ActivityCocktailList"
             android:configChanges="orientation"
             android:label="@string/title_activity_cocktails"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivitySettings"
+            android:name="projekt.Jakob.ActivitySettings"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivityBluetooth"
+            android:name="projekt.Jakob.ActivityBluetooth"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivityAdmin"
+            android:name="projekt.Jakob.ActivityAdmin"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivityNewCocktail"
+            android:name="projekt.MAtze.ActivityNewCocktail"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="projekt.Activitys.ActivityUser"
+            android:name="projekt.Jakob.ActivityUser"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="projekt.Activitys.AddUserActivity"
+            android:name="projekt.Jakob.AddUserActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_add_user"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.cocktailmixxer.ActivityCocktail"
+            android:name="projekt.MAtze.ActivityCocktail"
             android:configChanges="orientation"
             android:label="@string/title_activity_activity_cocktail"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="actual_working.ActivityAddSaft"
+            android:name="projekt.MAtze.ActivityAddSaft"
             android:label="@string/title_activity_activity_saft_list"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="actual_working.NewSaft"
+            android:name="projekt.MAtze.NewSaft"
             android:label="@string/title_activity_new_saft" >
         </activity>
         <activity
-            android:name="com.example.cocktailmixxer.ActivitySetMlSaft"
+            android:name="projekt.MAtze.ActivitySetMlSaft"
             android:label="@string/title_activity_add_saft" >
         </activity>
         <activity
-            android:name="projekt.Activitys.SelectSaftActivity"
+            android:name="projekt.Jakob.SelectSaftActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_select_saft"
             android:screenOrientation="portrait" >

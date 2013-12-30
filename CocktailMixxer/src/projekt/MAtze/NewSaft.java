@@ -1,12 +1,10 @@
-package actual_working;
+package projekt.MAtze;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
 
 import com.example.cocktailmixxer.R;
-import com.example.cocktailmixxer.R.layout;
-import com.example.cocktailmixxer.R.menu;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 
 public class NewSaft extends Activity {
 	// Nur ein Test 

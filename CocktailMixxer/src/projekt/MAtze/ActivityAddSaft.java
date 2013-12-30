@@ -1,7 +1,7 @@
-package actual_working;
+package projekt.MAtze;
 
 import projekt.helpclasses.CM_Status;
-import projekt.helpclasses.Cocktail;
+import projekt.helpclasses.Saft;
 import OwnList.CustomListViewAdapter;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.example.cocktailmixxer.ActivitySetMlSaft;
 import com.example.cocktailmixxer.R;
 
 public class ActivityAddSaft extends Activity {

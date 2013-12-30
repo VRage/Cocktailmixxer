@@ -1,4 +1,4 @@
-package com.example.cocktailmixxer;
+package projekt.MAtze;
 
 import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
@@ -13,6 +13,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.cocktailmixxer.R;
 
 public class ActivityCocktail extends Activity {
 	CM_Status status;

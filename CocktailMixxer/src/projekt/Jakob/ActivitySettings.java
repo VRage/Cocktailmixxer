@@ -1,4 +1,4 @@
-package projekt.Activitys;
+package projekt.Jakob;
 
 import android.app.Activity;
 import android.content.Intent;

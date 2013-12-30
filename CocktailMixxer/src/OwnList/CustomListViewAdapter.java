@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import projekt.helpclasses.Cocktail;
+import projekt.helpclasses.Saft;
 import projekt.helpclasses.User;
-import actual_working.Saft;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;

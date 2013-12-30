@@ -2,6 +2,8 @@ package OwnList;
 
 import java.io.Serializable;
 
+import projekt.helpclasses.Saft;
+
 public class RowItem implements Serializable,Cloneable{
 	/**
 	 * 
@@ -39,5 +41,9 @@ public class RowItem implements Serializable,Cloneable{
     public String toString() {
         return title + "\n" + desc;
     }
+	public int compareTo(Saft another) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
  }

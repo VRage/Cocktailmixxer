@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import actual_working.Saft;
+import OwnList.RowItem;
 
 import com.example.cocktailmixxer.R;
-
-import OwnList.RowItem;
 
 //
 //
@@ -60,10 +58,6 @@ public class Cocktail extends RowItem implements Serializable{
 		desc = title;
 		SaftList_cocktail = (List<Saft>) new ArrayList<Saft>();
 
-	}
-
-	public List<RowItem> getSaftList_cocktail() {
-		return (List<RowItem>) SaftList_cocktail;
 	}
 
 	public void setSaftList_cocktail(List<? super Saft> saftList_cocktail) {

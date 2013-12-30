@@ -1,4 +1,4 @@
-package actual_working;
+package projekt.helpclasses;
 
 import java.io.Serializable;
 
@@ -20,7 +20,7 @@ import com.example.cocktailmixxer.R;
 
 
 
-public class Saft extends RowItem implements Serializable,Cloneable{
+public class Saft extends RowItem implements Serializable,Cloneable, Comparable{
 	/**
 	 * 
 	 */
@@ -84,5 +84,14 @@ public class Saft extends RowItem implements Serializable,Cloneable{
 	public void setDescList(){
 		super.setDesc("Getränkanteil im Cocktail: \n"+Math.round(procent)+" %"+"\n"+procent*Math.round((500/100))+" ml");
 		
+	}
+
+
+	@Override
+	public int compareTo(Object another) {
+		Saft compare = (Saft) another;
+		if(Name == compare.Name)
+			return 1;
+		return 0;
 	}
 }
