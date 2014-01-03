@@ -1,4 +1,4 @@
-package OwnList;
+package projekt.OwnList;
 
 import java.io.File;
 import java.io.Serializable;
@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cocktailmixxer.R;
+
 
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		Serializable {

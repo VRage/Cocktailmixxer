@@ -1,16 +1,22 @@
 package projekt.MAtze;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import projekt.OwnList.CustomListViewAdapter;
+import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;
-import OwnList.CustomListViewAdapter;
+import projekt.helpclasses.User;
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
@@ -45,6 +51,16 @@ public class ActivityCocktailList extends Activity {
 				
 			}
 		});
+		lw.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					final int arg2, long arg3) {
+				status.get_CocktailList().remove(arg2);
+				CLW.notifyDataSetChanged();
+				return false;
+			}
+		});
 		switcher.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -52,11 +68,14 @@ public class ActivityCocktailList extends Activity {
 				// TODO Auto-generated method stub
 				if(isChecked)
 				{
+					
 					List Cocktaillist = status.get_CocktailList();
 					List Cocktaillistorderable = status.get_CocktailListOrderable();
 					for (int i = 0; i < Cocktaillist.size(); i++) {
+						
 						Cocktail cocktail = (Cocktail) Cocktaillist.get(i);
 						List saftliste = cocktail.get_SaftList_cocktail();
+						
 						boolean allSaftincluded = true;
 						
 						
@@ -67,25 +86,34 @@ public class ActivityCocktailList extends Activity {
 							}
 							else{ 
 								allSaftincluded = false;	
+								Toast.makeText(getApplicationContext(), "Saft niiiiicht enthalten !!", Toast.LENGTH_SHORT).show();
+								
 							}
 							
+							
 						}
-						if(allSaftincluded)
-							if(!Cocktaillistorderable.contains(cocktail))
+						if(allSaftincluded){
+							if(!Cocktaillistorderable.contains(cocktail)){
 								Cocktaillistorderable.add(cocktail);
+								
+							}
+		
+						}
 					}
 					CLW = new CustomListViewAdapter(getApplicationContext(), R.layout.activity_listitem,
-							status.get_CocktailListOrderable());
+							Cocktaillistorderable);
 					
 					lw.setAdapter(CLW);
 					CLW.notifyDataSetChanged();
 					
 				}
-				else 
+				else {
+					status.get_CocktailListOrderable().clear();
 					CLW = new CustomListViewAdapter(getApplicationContext(), R.layout.activity_listitem,
 							status.get_CocktailList());
 				lw.setAdapter(CLW);
 				CLW.notifyDataSetChanged();
+				}
 			}
 		});
 	}

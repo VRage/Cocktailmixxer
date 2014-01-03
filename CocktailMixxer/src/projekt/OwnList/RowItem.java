@@ -1,6 +1,8 @@
-package OwnList;
+package projekt.OwnList;
 
 import java.io.Serializable;
+
+import android.widget.Toast;
 
 import projekt.helpclasses.Saft;
 
@@ -41,9 +43,31 @@ public class RowItem implements Serializable,Cloneable{
     public String toString() {
         return title + "\n" + desc;
     }
-	public int compareTo(Saft another) {
-		// TODO Auto-generated method stub
-		return 0;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RowItem other = (RowItem) obj;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+		
 	}
 
- }
+}

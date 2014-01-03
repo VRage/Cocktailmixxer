@@ -1,19 +1,17 @@
 package projekt.Jakob;
 
-import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import projekt.OwnList.CustomListViewAdapter;
+import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.User;
-import OwnList.CustomListViewAdapter;
-import OwnList.RowItem;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;

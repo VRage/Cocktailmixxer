@@ -4,10 +4,10 @@ package projekt.Jakob;
 
 import java.util.List;
 
+import projekt.OwnList.CustomListViewAdapter;
+import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Saft;
-import OwnList.CustomListViewAdapter;
-import OwnList.RowItem;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +44,7 @@ public class SelectSaftActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				safte_intern.set(bottlenumber-1, (Saft) saftlist_all.getAdapter().getItem(arg2));
+				safte_intern.set(bottlenumber-1, status.get_SaftList_all().get(arg2));
 				finish();
 			}
 		});

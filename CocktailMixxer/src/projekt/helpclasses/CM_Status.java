@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import OwnList.RowItem;
+import projekt.OwnList.RowItem;
 import android.app.Application;
 import android.os.Environment;
 
@@ -151,10 +151,13 @@ public class CM_Status extends Application implements Serializable {
 		// UserList.add(new User("MaxSchuster", 55.0, 155.0, true,
 		// new GregorianCalendar(1987, 06, 18)));
 
-		SaftList_all.add(new Saft("Orangen Saft", "-"));
-		SaftList_all.add(new Saft("Red Bull", "-"));
-		SaftList_all.add(new Saft("Cola", "-"));
-		SaftList_all.add(new Saft("Ice Tee", "-"));
+		SaftList_all.add(new Saft("Orangen Saft", "Sehr fruchtiger Saft #leckerfruchtig"));
+		SaftList_all.add(new Saft("Red Bull", "Macht wach also nicht zuviel davon \n#wake me up up up "));
+		SaftList_all.add(new Saft("Cola", "Lecker zeug"));
+		SaftList_all.add(new Saft("Ice Tee", "Auch lecker"));
+		SaftList_all.add(new Saft("Wodka", "Russenwasser \n#YOLO"));
+		SaftList_all.add(new Saft("Rum", "Das Zeug um sich wegzubeamen \n#Edelshit"));
+		SaftList_all.add(new Saft("Baileys", "MUhahahah"));
 		for (int i = 0; i < 8; i++) {
 			SaftList_intern.add(null);
 		}

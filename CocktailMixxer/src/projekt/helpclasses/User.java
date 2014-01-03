@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import OwnList.RowItem;
+import projekt.OwnList.RowItem;
+
+
 public class User extends RowItem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

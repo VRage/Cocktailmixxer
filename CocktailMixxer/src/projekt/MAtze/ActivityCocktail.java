@@ -1,8 +1,8 @@
 package projekt.MAtze;
 
+import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
-import OwnList.CustomListViewAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;

@@ -2,7 +2,9 @@ package projekt.helpclasses;
 
 import java.io.Serializable;
 
-import OwnList.RowItem;
+import projekt.OwnList.RowItem;
+
+import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
 
@@ -20,7 +22,7 @@ import com.example.cocktailmixxer.R;
 
 
 
-public class Saft extends RowItem implements Serializable,Cloneable, Comparable{
+public class Saft extends RowItem implements Serializable,Cloneable{
 	/**
 	 * 
 	 */
@@ -87,11 +89,5 @@ public class Saft extends RowItem implements Serializable,Cloneable, Comparable{
 	}
 
 
-	@Override
-	public int compareTo(Object another) {
-		Saft compare = (Saft) another;
-		if(Name == compare.Name)
-			return 1;
-		return 0;
-	}
+
 }

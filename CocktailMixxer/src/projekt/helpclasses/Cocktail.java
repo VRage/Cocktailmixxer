@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import OwnList.RowItem;
+import projekt.OwnList.RowItem;
 
 import com.example.cocktailmixxer.R;
 
@@ -26,8 +26,6 @@ public class Cocktail extends RowItem implements Serializable{
 	static String Name;
 	int C_ID;
 	static String desc;
-	//List<Saft> Saefte;
-	int MixIDList;
 
 	final public int cocktailsize = 500;
 	int mlLeft=cocktailsize;
@@ -53,9 +51,10 @@ public class Cocktail extends RowItem implements Serializable{
 	static int imageId = R.drawable.icon_cocktail;
 
 	
-	public Cocktail(int imageId, String title) {
-		super(imageId, desc, "-");
-		desc = title;
+	public Cocktail(int imageId, String title, String desc) {
+		super(imageId, title, desc);
+		Name = title;
+		this.desc = desc;
 		SaftList_cocktail = (List<Saft>) new ArrayList<Saft>();
 
 	}
@@ -68,8 +67,8 @@ public class Cocktail extends RowItem implements Serializable{
 		super.setTitle(name);
 	}
 
-	public void setInfo(String info) {
-		this.desc = info;
+	public void setDesc(String info) {
+		super.setDesc(info);
 	}
 
 
@@ -105,4 +104,9 @@ public class Cocktail extends RowItem implements Serializable{
 	public String toString() {
 		return "";
 	}
+	@Override
+	public boolean equals(Object o) {
+		return super.equals(o);
+	}
+
 }

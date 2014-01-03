@@ -1,9 +1,9 @@
 package projekt.MAtze;
 
+import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;
 import projekt.helpclasses.Saft;
-import OwnList.CustomListViewAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import com.example.cocktailmixxer.R;
 public class ActivityNewCocktail extends Activity {
 	SeekBar seekbar;
 	TextView Name;
+	TextView Desc;
 	int imageId;
 	ImageView Icon;
 	Button newSaft;
@@ -29,7 +30,7 @@ public class ActivityNewCocktail extends Activity {
 	CM_Status status;
 	CustomListViewAdapter CLWA;
 	ListView SaefteCocktail;
-	Cocktail buildetCocktail = new Cocktail(R.drawable.cocktail_icon_lol, "-");
+	Cocktail buildetCocktail = new Cocktail(R.drawable.cocktail_icon_lol, "NoName","-");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class ActivityNewCocktail extends Activity {
 		order = (Button) findViewById(R.id.newCocktail_btnBestellen);
 		SaefteCocktail.setAdapter(CLWA);
 		Name = (TextView) findViewById(R.id.newCocktail_editTextName);
+		Desc = (TextView)findViewById(R.id.newCocktail_editTextDesc);
 
 		SaefteCocktail.setOnItemClickListener(new OnItemClickListener() {
 
@@ -84,6 +86,7 @@ public class ActivityNewCocktail extends Activity {
 		try {
 			String temp = Name.getText().toString();
 			buildetCocktail.setTitle(temp);
+			buildetCocktail.setDesc(Desc.getText().toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();

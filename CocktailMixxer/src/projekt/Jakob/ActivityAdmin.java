@@ -2,10 +2,10 @@ package projekt.Jakob;
 
 import java.util.List;
 
-import projekt.helpclasses.BluetoothSerialService;
+import projekt.OwnList.CustomListViewAdapter;
+import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
-import OwnList.CustomListViewAdapter;
-import OwnList.RowItem;
+import projekt.helpclasses.Saft;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
 
@@ -61,7 +62,28 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		adapter.notifyDataSetChanged();
+		try{
+		List saefte = status.get_SaftList_intern();
+		String ausgabe ="Saefte;";
+		for (int i = 0; i < saefte.size(); i++) {
+			
+			try{
+			Saft temp = (Saft) saefte.get(i);
+			ausgabe = ausgabe+temp.getTitle()+"\n";
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+		Toast.makeText(getApplicationContext(), ausgabe, Toast.LENGTH_LONG).show();
+		}
+		catch(Exception e){
+			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+		}
+		
 		super.onResume();
+		
 	}
 
 

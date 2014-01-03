@@ -1,8 +1,8 @@
 package projekt.MAtze;
 
+import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Saft;
-import OwnList.CustomListViewAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
