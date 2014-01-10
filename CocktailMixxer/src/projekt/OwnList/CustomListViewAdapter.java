@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.example.cocktailmixxer.R;
 
-
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		Serializable {
 	/**
@@ -35,27 +34,28 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 	String fullPath = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_CARD;
 
-	
 	public void setDesc(RowItem rowItem) {
 		ActivityManager am = (ActivityManager) context
 				.getSystemService(Context.ACTIVITY_SERVICE);
 
 		// Toast.makeText(getContext(), getContext().getClass().getSimpleName(),
 		// Toast.LENGTH_SHORT).show();
-		if (rowItem instanceof Saft){
+		if (rowItem instanceof Saft) {
 			if (getContext().getClass().getSimpleName()
 					.equals("ActivityAddSaft"))
 				// Toast.makeText(getContext(), "true",
 				// Toast.LENGTH_SHORT).show();
 				holder.txtDesc.setText(rowItem.getDesc());
+			else if (getContext().getClass().getSimpleName()
+					.equals("ActivityAdmin"))
+				holder.txtDesc.setText(rowItem.getDesc());
 			else
 				// holder.txtDesc.setText(((Saft) rowItem).getProcent());
-				holder.txtDesc.setText("\nml Anteil im Cocktail: \n"+((Saft) rowItem).getMl()+"/500 ml");
-		}
-			else
-				holder.txtDesc.setText(rowItem.getDesc());
-	
-			
+				holder.txtDesc.setText("\nml Anteil im Cocktail: \n"
+						+ ((Saft) rowItem).getMl() + "/500 ml");
+		} else
+			holder.txtDesc.setText(rowItem.getDesc());
+
 	}
 
 	public void setImage(RowItem rowItem) {
@@ -73,7 +73,10 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		} else if (rowItem instanceof Cocktail) {
 			holder.imageView.setImageResource(R.drawable.icon_cocktail);
 		} else if (rowItem instanceof Saft) {
-			holder.imageView.setImageResource(R.drawable.saft_icon);
+			 if (getContext().getClass().getSimpleName().equals("ActivityAdmin") && rowItem.getDesc().isEmpty() &&rowItem.getTitle().isEmpty())
+				 holder.imageView.setImageResource(0);
+			 else
+				holder.imageView.setImageResource(R.drawable.saft_icon);
 		}
 
 	}
@@ -90,6 +93,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		TextView txtTitle;
 		TextView txtDesc;
 	}
+
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// ViewHolder holder = null;
 		RowItem rowItem = getItem(position);
@@ -107,10 +111,10 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 			holder = (ViewHolder) convertView.getTag();
 
 		// holder.txtDesc.setText(rowItem.getDesc());
-		if(rowItem!=null){
-		holder.txtTitle.setText(rowItem.getTitle());
-		setDesc(rowItem);
-		setImage(rowItem);
+		if (rowItem != null) {
+			holder.txtTitle.setText(rowItem.getTitle());
+			setDesc(rowItem);
+			setImage(rowItem);
 		}
 		return convertView;
 	}
@@ -133,13 +137,12 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 			holder = (ViewHolder) convertView.getTag();
 
 		// holder.txtDesc.setText(rowItem.getDesc());
-		if(rowItem!=null){
-		holder.txtTitle.setText(rowItem.getTitle());
-		setDesc(rowItem);
-		setImage(rowItem);
+		if (rowItem != null) {
+			holder.txtTitle.setText(rowItem.getTitle());
+			setDesc(rowItem);
+			setImage(rowItem);
 		}
 		return convertView;
 	}
-
 
 }

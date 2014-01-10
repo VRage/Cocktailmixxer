@@ -1,4 +1,4 @@
-package projekt.MAtze;
+package projekt.Matze;
 
 import java.util.ArrayList;
 import java.util.List;

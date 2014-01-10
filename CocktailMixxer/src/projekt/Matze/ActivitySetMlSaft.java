@@ -1,4 +1,4 @@
-package projekt.MAtze;
+package projekt.Matze;
 
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;

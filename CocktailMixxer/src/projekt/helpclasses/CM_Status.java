@@ -159,7 +159,7 @@ public class CM_Status extends Application implements Serializable {
 		SaftList_all.add(new Saft("Rum", "Das Zeug um sich wegzubeamen \n#Edelshit"));
 		SaftList_all.add(new Saft("Baileys", "MUhahahah"));
 		for (int i = 0; i < 8; i++) {
-			SaftList_intern.add(null);
+			SaftList_intern.add(new Saft("", ""));
 		}
 
 		// activeUser = (User) UserList.get(0);

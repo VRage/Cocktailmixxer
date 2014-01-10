@@ -1,4 +1,4 @@
-package projekt.MAtze;
+package projekt.Matze;
 
 import android.app.Activity;
 import android.os.Bundle;

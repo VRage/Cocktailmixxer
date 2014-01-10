@@ -19,24 +19,23 @@ import com.example.cocktailmixxer.R;
 //
 //
 
-
-
-
-public class Saft extends RowItem implements Serializable,Cloneable{
+public class Saft extends RowItem implements Serializable, Cloneable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	public Saft(String title, String description) {
 		super(imageId, title, description);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	private int S_ID;
-	private int procent=0;
-	
-	//Wert an ml im spziefischem Cocktail 
-	private int ml =0;
+	private int procent = 0;
+
+	// Wert an ml im spziefischem Cocktail
+	private int ml = 0;
+
 	public int getMl() {
 		return ml;
 	}
@@ -47,47 +46,53 @@ public class Saft extends RowItem implements Serializable,Cloneable{
 
 	private String Name;
 	private String decs;
-	public Object clone() throws CloneNotSupportedException
-    {
-        /* Hier wird die Methode clone der Superklasse(in diesem Falle Object) aufgerufen. */
-        return super.clone();
-    }
 
-	static int imageId=R.drawable.saeft_icon;
+	public Object clone() throws CloneNotSupportedException {
+		/*
+		 * Hier wird die Methode clone der Superklasse(in diesem Falle Object)
+		 * aufgerufen.
+		 */
+		return super.clone();
+	}
+
+	static int imageId = R.drawable.saeft_icon;
 	private double AlkGehalt;
 	private int Behaelter;
 	public String Kategorie;
+
 	public void setName() {
-	
+
 	}
-	
+
 	public void setAlkGehalt() {
-	
+
 	}
-	
+
 	public void setBehaelter() {
-	
+
 	}
-	
+
 	public void setKategorie() {
-	
+
 	}
-	
+
 	public void getAlkMl() {
-	
+
 	}
-	
+
 	public String toString() {
 		return "";
 	}
-	public void setdescNormal(){
-		super.setDesc("---");
-	}
-	public void setDescList(){
-		super.setDesc("Getränkanteil im Cocktail: \n"+Math.round(procent)+" %"+"\n"+procent*Math.round((500/100))+" ml");
-		
+
+	public void setdescNormal() {
+			super.setDesc("---");
+
 	}
 
+	public void setDescList() {
+			super.setDesc("Getränkanteil im Cocktail: \n" + Math.round(procent)
+					+ " %" + "\n" + procent * Math.round((500 / 100)) + " ml");
 
+	}
 
 }

@@ -1,7 +1,5 @@
 package projekt.Jakob;
 
-
-
 import java.util.List;
 
 import projekt.OwnList.CustomListViewAdapter;
@@ -13,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -24,6 +23,7 @@ public class SelectSaftActivity extends Activity {
 	List<RowItem> safte_intern;
 	ListView saftlist_all;
 	CustomListViewAdapter adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,24 +32,39 @@ public class SelectSaftActivity extends Activity {
 		saftlist_all = (ListView) findViewById(R.id.selectsaft_saftlistall);
 		safte = status.get_SaftList_all();
 		safte_intern = status.get_SaftList_intern();
-		adapter = new CustomListViewAdapter(this,R.layout.activity_listitem, safte);
-		saftlist_all.setAdapter(adapter);       
-        
-        
+		adapter = new CustomListViewAdapter(this, R.layout.activity_listitem,
+				safte);
+		saftlist_all.setAdapter(adapter);
+
 		saftlist_all.setOnItemClickListener(new OnItemClickListener() {
 
-			Intent sender=getIntent();
-			String extraData=sender.getExtras().getString("Bottlenumber");
+			Intent sender = getIntent();
+			String extraData = sender.getExtras().getString("Bottlenumber");
 			int bottlenumber = Integer.parseInt(extraData);
+
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				safte_intern.set(bottlenumber-1, status.get_SaftList_all().get(arg2));
-				finish();
+				boolean hat = false;
+				for (int j = 0; j < safte_intern.size(); j++) {
+					if (status.get_SaftList_intern().contains(
+							status.get_SaftList_all().get(arg2))) {
+						Toast.makeText(getApplicationContext(),
+								"Saft schon in der Liste enthalten",
+								Toast.LENGTH_SHORT).show();
+						hat = true;
+						break;
+
+					}
+				}
+					if (!hat) {
+						safte_intern.set(bottlenumber - 1, status
+								.get_SaftList_all().get(arg2));
+						finish();
+					}
+				
 			}
 		});
 	}
-	
-
 
 }

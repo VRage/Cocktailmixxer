@@ -1,4 +1,4 @@
-package projekt.MAtze;
+package projekt.Matze;
 
 import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.BluetoothSerialService;

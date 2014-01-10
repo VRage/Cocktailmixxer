@@ -76,7 +76,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 				
 			}
 		}
-		Toast.makeText(getApplicationContext(), ausgabe, Toast.LENGTH_LONG).show();
+
 		}
 		catch(Exception e){
 			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
@@ -131,7 +131,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 	{
 		for(int i=0;i<8;i++){
 			
-			safte.set(i, null);
+			safte.set(i, new Saft("",""));
 		}
 		adapter.notifyDataSetChanged();
 		
