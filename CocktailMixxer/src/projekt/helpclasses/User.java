@@ -21,7 +21,6 @@ public class User extends RowItem implements Serializable{
 	private double Length=0.0;
 	private double AlkGehalt;
 	private double Promille;
-	private Date FahrtuechtigIn;
 	private List<? super Cocktail> cocktails = (List<Cocktail>) new ArrayList<Cocktail>();
 	private Boolean Geschlecht;
 	public int Alter =0;
@@ -41,6 +40,10 @@ public class User extends RowItem implements Serializable{
 		Promille= 0.0;
 		setDescription();
 		CM_Status.inkUserid();
+	}
+	
+	public List<RowItem> get_CocktailList() {
+		return (List<RowItem>) cocktails;
 	}
 	
 	public void addCocktail(Cocktail cock)

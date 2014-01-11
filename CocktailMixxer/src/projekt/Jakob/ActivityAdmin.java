@@ -7,10 +7,14 @@ import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Saft;
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 	ListView saftlist_intern;
 	static Button b1, b2, b3, b4, b5, b6, b7, b8;
 	CustomListViewAdapter adapter;
+
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,6 +59,49 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		b7.setOnClickListener(this);
 		b8.setOnClickListener(this);
 		
+		final Builder builder = new Builder(this);
+		
+		saftlist_intern.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					final int arg2, long arg3) {
+				
+				builder.setTitle("ACHTUNG!!")
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setMessage(
+								"Sind Sie sicher, dass Sie den Saft löschen wollen?")
+						.setPositiveButton("Löschen",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										
+										for(int i=0;i<8;i++){
+											
+											safte.set(i, new Saft("",""));
+										}
+										adapter.notifyDataSetChanged();
+										
+									}
+								})
+						.setNegativeButton("Abbruch",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+
+										dialog.cancel();
+									}
+								}).show();
+
+			
+				return false;
+			}
+		});
 		
 	}
 	
@@ -129,11 +177,37 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 	}
 	public void clearList(View view)
 	{
-		for(int i=0;i<8;i++){
-			
-			safte.set(i, new Saft("",""));
-		}
-		adapter.notifyDataSetChanged();
-		
+		Builder builder = new Builder(this);
+		builder.setTitle("ACHTUNG!!")
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setMessage(
+						"Sind Sie sicher dass Sie alle Säfte löschen wollen?")
+				.setPositiveButton("Löschen",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								
+								for(int i=0;i<8;i++){
+									
+									safte.set(i, new Saft("",""));
+								}
+								adapter.notifyDataSetChanged();
+								
+							}
+						})
+				.setNegativeButton("Abbruch",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+
+								dialog.cancel();
+							}
+						}).show();
+
 	}
 }

@@ -3,6 +3,7 @@ package projekt.Matze;
 import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
+import projekt.helpclasses.Cocktail;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -58,6 +59,8 @@ public class ActivityCocktail extends Activity {
 			public void onClick(View arg0) {
 				// Sendet Byte Array an Bluetooth 
 				service.write(status.get_ActiveCocktail().getBluetoothSignal());
+				if (status.get_ActiveUser() != null)
+					status.get_ActiveUser().addCocktail(status.get_ActiveCocktail());
 				finish();
 			}
 		});

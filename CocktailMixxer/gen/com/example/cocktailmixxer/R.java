@@ -45,13 +45,14 @@ public final class R {
         public static final int Cocktail_ListView=0x7f09002d;
         public static final int Cocktail_btnOrder=0x7f09002e;
         public static final int Settings_BtnBluetooth=0x7f090044;
-        public static final int action_settings=0x7f09004d;
+        public static final int User_Cocktaillist=0x7f090049;
+        public static final int action_settings=0x7f09004c;
         public static final int addSaft_ButtonNewSaft=0x7f09000f;
         public static final int addSaft_seekbar=0x7f090011;
         public static final int addSaft_textViewMlActual=0x7f09000e;
         public static final int addSaft_textViewMlLeft=0x7f09000d;
         public static final int addUser_back=0x7f090003;
-        public static final int admin=0x7f09004e;
+        public static final int admin=0x7f09004d;
         public static final int admin_behalter1=0x7f090015;
         public static final int admin_behalter2=0x7f090016;
         public static final int admin_behalter3=0x7f090017;
@@ -81,8 +82,8 @@ public final class R {
         public static final int editText2=0x7f09003f;
         public static final int icon=0x7f090029;
         public static final int imageView1=0x7f090010;
-        public static final int item1=0x7f09004b;
-        public static final int item2=0x7f09004c;
+        public static final int item1=0x7f09004a;
+        public static final int item2=0x7f09004b;
         public static final int linearLayout1=0x7f090014;
         public static final int linearLayout2=0x7f090019;
         public static final int list_textView=0x7f090012;
@@ -95,7 +96,6 @@ public final class R {
         public static final int newCocktail_editTextDesc=0x7f09003b;
         public static final int newCocktail_editTextName=0x7f09003a;
         public static final int newCocktail_listSaefte=0x7f09003d;
-        public static final int newCocktail_listSäfte=0x7f09004a;
         public static final int newcocktail_textView_menge=0x7f090013;
         public static final int radio0=0x7f090006;
         public static final int radio1=0x7f090007;
@@ -118,9 +118,8 @@ public final class R {
         public static final int user_editTextName=0x7f090008;
         public static final int user_edittextSize=0x7f090009;
         public static final int user_edittextWeight=0x7f09000a;
-        public static final int user_fahren=0x7f090048;
         public static final int user_pic=0x7f090004;
-        public static final int user_promille=0x7f090049;
+        public static final int user_promille=0x7f090048;
     }
     public static final class layout {
         public static final int activity_add_user=0x7f030000;

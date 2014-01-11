@@ -56,25 +56,16 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/user_fahren"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignParentLeft="true"
-        android:text="Fahrtüchtig in:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/user_promille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/user_fahren"
+        android:layout_above="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
         android:text="Aktueller Promillewert:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-        android:id="@+id/newCocktail_listSäfte"
+        android:id="@+id/User_Cocktaillist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/user_promille"

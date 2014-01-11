@@ -21,6 +21,7 @@ import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,25 +32,30 @@ public class ActivityUser extends Activity {
 	Button newUser;
 	CM_Status status;
 	List<RowItem> users;
+	List<RowItem> cocktail;
+	ListView cocktails_list;
 	Spinner sp1;
 	CustomListViewAdapter adapter;
+	CustomListViewAdapter adapter_cocktail;
 	TextView Promille;
-	TextView Fahren;
 	DecimalFormat f = new DecimalFormat("0.0000");
 
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user);
+		cocktails_list = (ListView) findViewById(R.id.User_Cocktaillist);
 		status = (CM_Status) getApplicationContext();
 		users = status.get_UserList();
 		Promille = (TextView) findViewById(R.id.user_promille);
-		Fahren = (TextView) findViewById(R.id.user_fahren);
 		Promille.setText("");
-		Fahren.setText("");
 		newUser = (Button) findViewById(R.id.btn_newuser);
 		sp1 = (Spinner) findViewById(R.id.user_SpinnerUsers);
-
+		if (status.get_ActiveUser() != null) {
+			cocktail = status.get_ActiveUser().get_CocktailList();
+			adapter_cocktail = new CustomListViewAdapter(this,
+					R.layout.activity_listitem, cocktail);
+			cocktails_list.setAdapter(adapter_cocktail);
+		}
 
 		registerForContextMenu(sp1);
 		adapter = new CustomListViewAdapter(this, R.layout.activity_listitem,
@@ -72,7 +78,6 @@ public class ActivityUser extends Activity {
 
 			}
 
-
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
@@ -80,17 +85,20 @@ public class ActivityUser extends Activity {
 					status.set_ActiveUser((User) sp1.getSelectedItem());
 
 					status.get_ActiveUser().calcAlkAnteil();
+					cocktail = status.get_ActiveUser().get_CocktailList();
+					adapter_cocktail = new CustomListViewAdapter(getApplicationContext(),
+							R.layout.activity_listitem, cocktail);
+					cocktails_list.setAdapter(adapter_cocktail);
 					Promille.setText("Aktueller Promillewert: "
 							+ f.format(status.get_ActiveUser().getPromille())
 							+ "‰");
-					Fahren.setText("Fahrtüchtig in: " + 0 + "std");
 				} catch (Exception e) {
-					Toast.makeText(getApplicationContext(), "Fehler",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(),
+							"Fehler: " + e.toString(), Toast.LENGTH_LONG)
+							.show();
 				}
 			}
 		});
-		
 
 		newUser.setOnClickListener(new OnClickListener() {
 			@SuppressWarnings("deprecation")
@@ -101,10 +109,9 @@ public class ActivityUser extends Activity {
 			}
 
 		});
-		if (users.isEmpty()){
+		if (users.isEmpty()) {
 			sp1.setVisibility(View.INVISIBLE);
-		}
-		else{
+		} else {
 			sp1.setVisibility(View.VISIBLE);
 			sp1.setSelection(adapter.getPosition(status.get_ActiveUser()));
 		}
@@ -136,9 +143,12 @@ public class ActivityUser extends Activity {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									// TODO Auto-generated method stub
+									
 									status.delete_UserItem((User) sp1
 											.getSelectedItem());
 									adapter.notifyDataSetChanged();
+									
+									
 									if (!users.isEmpty()) {
 										status.set_ActiveUser((User) users
 												.get(0));
@@ -146,13 +156,14 @@ public class ActivityUser extends Activity {
 												+ f.format(status
 														.get_ActiveUser()
 														.getPromille()) + "‰");
-										Fahren.setText("Fahrtüchtig in: " + 0
-												+ "std");
-
+										cocktail = status.get_ActiveUser().get_CocktailList();
+										adapter_cocktail = new CustomListViewAdapter(getApplicationContext(),
+												R.layout.activity_listitem, cocktail);
+										cocktails_list.setAdapter(adapter_cocktail);
 									} else {
+										adapter_cocktail.clear();
 										status.set_ActiveUser(null);
 										Promille.setText("");
-										Fahren.setText("");
 										sp1.setVisibility(View.INVISIBLE);
 									}
 								}
@@ -169,7 +180,6 @@ public class ActivityUser extends Activity {
 								}
 							}).show();
 
-				
 		}
 	}
 
