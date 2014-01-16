@@ -70,6 +70,7 @@ public class AddUserActivity extends Activity {
 					Double.parseDouble(newUserLength.getText().toString()),
 					newUserGesch, new GregorianCalendar(dpResult.getYear(),
 							dpResult.getMonth() + 1, dpResult.getDayOfMonth())));
+			status.saveToSerFile("User", status.get_UserList());
 			Intent intent = new Intent(view.getContext(), ActivityUser.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			this.startActivity(intent);

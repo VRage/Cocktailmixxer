@@ -77,11 +77,9 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
+
+											safte.set(safte.indexOf((Saft)saftlist_intern.getItemAtPosition(arg2)), new Saft("",""));
 										
-										for(int i=0;i<8;i++){
-											
-											safte.set(i, new Saft("",""));
-										}
 										adapter.notifyDataSetChanged();
 										
 									}

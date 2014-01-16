@@ -66,7 +66,7 @@ public class CM_Status extends Application implements Serializable {
 			saveToSerFile("Cocktail", CocktailList);
 			saveToSerFile("Saft", SaftList_all);
 			saveToSerFile("Status", status);
-			saveToSerFile("Safterintern", SaftList_intern);
+			saveToSerFile("Saftintern", SaftList_intern);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

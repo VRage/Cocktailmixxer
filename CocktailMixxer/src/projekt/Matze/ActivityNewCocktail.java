@@ -87,13 +87,14 @@ public class ActivityNewCocktail extends Activity {
 			String temp = Name.getText().toString();
 			buildetCocktail.setTitle(temp);
 			buildetCocktail.setDesc(Desc.getText().toString());
+			status.add_CocktailItem(buildetCocktail);
+			status.saveToSerFile("Cocktail", status.get_CocktailList());
+			finish();
 		} catch (Exception e) {
 			// TODO: handle exception
 			Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
 		}
 
-		status.add_CocktailItem(buildetCocktail);
-		finish();
 		// startActivity(new Intent(MainActivity.this,
 		// ActivityBluetooth.class)); //btnPressedCockTailsList();
 	}

@@ -1,5 +1,6 @@
 package projekt.Jakob;
 
+import java.io.IOException;
 import java.util.List;
 
 import projekt.OwnList.CustomListViewAdapter;
@@ -60,6 +61,12 @@ public class SelectSaftActivity extends Activity {
 					if (!hat) {
 						safte_intern.set(bottlenumber - 1, status
 								.get_SaftList_all().get(arg2));
+						try {
+							status.saveToSerFile("Saftintern", status.get_SaftList_intern());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						finish();
 					}
 				

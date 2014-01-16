@@ -12,7 +12,7 @@ import projekt.OwnList.RowItem;
 
 public class User extends RowItem implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 11L;
 	public int icon;
 
 	private static String B_Name;
@@ -26,6 +26,55 @@ public class User extends RowItem implements Serializable{
 	public int Alter =0;
 	public GregorianCalendar Birthdate;
 	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((Birthdate == null) ? 0 : Birthdate.hashCode());
+		result = prime * result
+				+ ((Geschlecht == null) ? 0 : Geschlecht.hashCode());
+		result = prime * result + ID;
+		long temp;
+		temp = Double.doubleToLongBits(Length);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(Weight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (Birthdate == null) {
+			if (other.Birthdate != null)
+				return false;
+		} else if (!Birthdate.equals(other.Birthdate))
+			return false;
+		if (Geschlecht == null) {
+			if (other.Geschlecht != null)
+				return false;
+		} else if (!Geschlecht.equals(other.Geschlecht))
+			return false;
+		if (ID != other.ID)
+			return false;
+		if (Double.doubleToLongBits(Length) != Double
+				.doubleToLongBits(other.Length))
+			return false;
+		if (Double.doubleToLongBits(Weight) != Double
+				.doubleToLongBits(other.Weight))
+			return false;
+		return true;
+	}
+
 	public User(String name, double weight, double length, boolean gesch,GregorianCalendar birth)
 	{
 		super(CM_Status.getUserid(), name, "");
