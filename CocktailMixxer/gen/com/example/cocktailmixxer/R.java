@@ -52,6 +52,7 @@ public final class R {
         public static final int addSaft_textViewMlActual=0x7f09000e;
         public static final int addSaft_textViewMlLeft=0x7f09000d;
         public static final int addUser_back=0x7f090003;
+        public static final int addsaft_title=0x7f09000c;
         public static final int admin=0x7f09004d;
         public static final int admin_behalter1=0x7f090015;
         public static final int admin_behalter2=0x7f090016;
@@ -72,6 +73,7 @@ public final class R {
         public static final int btn_User=0x7f090034;
         public static final int btn_clear=0x7f090047;
         public static final int btn_newuser=0x7f090046;
+        public static final int cocktail_desc=0x7f09002b;
         public static final int cocktail_header=0x7f09002a;
         public static final int cocktaillist_ListView=0x7f090026;
         public static final int cocktails_btnNewCocktail=0x7f090027;
@@ -107,11 +109,9 @@ public final class R {
         public static final int scrollView2=0x7f090039;
         public static final int selectsaft_saftlistall=0x7f090043;
         public static final int textView1=0x7f090042;
-        public static final int textView2=0x7f09002b;
         public static final int textView3=0x7f09002c;
         public static final int text_bluetoothfound=0x7f090020;
         public static final int title=0x7f09002f;
-        public static final int title_left_text=0x7f09000c;
         public static final int title_right_text=0x7f090036;
         public static final int user_SpinnerUsers=0x7f090045;
         public static final int user_btnNewUser=0x7f090002;

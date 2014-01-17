@@ -9,7 +9,7 @@
     tools:context=".ActivitySetMlSaft" >
 
     <TextView
-        android:id="@+id/title_left_text"
+        android:id="@+id/addsaft_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/title_left_text"
+        android:layout_below="@+id/addsaft_title"
         android:text="@string/MlLeft"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

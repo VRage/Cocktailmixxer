@@ -54,7 +54,7 @@ public class ActivityNewCocktail extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				status.set_ActiveCocktail(buildetCocktail);
-				// Hole angeklickten saft 
+				// Hole angeklickten cocktail 
 				Saft safttemp = (Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2);
 				//Reseten der ml 
 				status.get_ActiveCocktail()
@@ -84,15 +84,27 @@ public class ActivityNewCocktail extends Activity {
 		// Toast.makeText(this, "Coktail hinzugefügt",
 		// Toast.LENGTH_LONG).show();
 		try {
-			String temp = Name.getText().toString();
-			buildetCocktail.setTitle(temp);
+			if(buildetCocktail.get_SaftList_cocktail().get(0)==null){
+				Toast.makeText(getApplicationContext(), "Getränkeliste ist leer", Toast.LENGTH_SHORT);
+			}
+			else if(!Name.getText().toString().equals(""))
+			{
+			buildetCocktail.setTitle(Name.getText().toString());
 			buildetCocktail.setDesc(Desc.getText().toString());
+			
 			status.add_CocktailItem(buildetCocktail);
 			status.saveToSerFile("Cocktail", status.get_CocktailList());
 			finish();
+			}
+			else{
+				Toast.makeText(getApplicationContext(),"Bitte gültigen Cocktail Namen eingeben ! "/*"Bitte gültigen Namen und/oder beschreibung eintragen"*/, Toast.LENGTH_LONG).show();
+			}
+			
+				
+			
 		} catch (Exception e) {
 			// TODO: handle exception
-			Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Getränkeliste ist leer \n\n\n" + e.toString(), Toast.LENGTH_LONG).show();
 		}
 
 		// startActivity(new Intent(MainActivity.this,

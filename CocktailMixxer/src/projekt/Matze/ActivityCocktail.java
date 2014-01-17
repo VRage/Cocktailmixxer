@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
 
@@ -22,6 +23,7 @@ public class ActivityCocktail extends Activity {
 	ListView lw;
 	CustomListViewAdapter CLVA;
 	TextView Header;
+	TextView Desc;
 	BluetoothSerialService service;
 	Button order;
 	@Override
@@ -42,6 +44,11 @@ public class ActivityCocktail extends Activity {
 		//dsafdsaf
 		Header = (TextView)findViewById(R.id.cocktail_header);
 		Header.setText(status.get_ActiveCocktail().getTitle());
+		Desc = (TextView)findViewById(R.id.cocktail_desc);
+		Desc.setText(status.get_ActiveCocktail().getDesc());
+		
+		
+		
 		lw.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -72,6 +79,28 @@ public class ActivityCocktail extends Activity {
 		getMenuInflater().inflate(R.menu.activity_cocktail, menu);
 		return true;
 		
+	}
+	@Override
+	protected void onResume() {
+		
+		boolean allSaftincluded = true;
+		
+		
+		for (int j = 0; j < status.get_ActiveCocktail().get_SaftList_cocktail().size(); j++) {
+			if(status.get_SaftList_intern().contains(status.get_ActiveCocktail().get_SaftList_cocktail().get(j)))			{}
+			else				allSaftincluded = false;
+			
+
+		if(allSaftincluded)
+			order.setVisibility(View.VISIBLE);
+		else
+			order.setVisibility(View.INVISIBLE);
+		if(service.getState()!=BluetoothSerialService.STATE_CONNECTED)
+			order.setText("noch nicht connected");
+		else 
+			order.setText("Bestellen");
+		super.onResume();
+	}
 	}
 
 }

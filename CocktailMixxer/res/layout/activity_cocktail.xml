@@ -20,13 +20,13 @@
         android:id="@+id/cocktail_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignLeft="@+id/cocktail_desc"
         android:layout_alignTop="@+id/icon"
         android:text="Cocktail Name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/cocktail_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cocktail_header"
@@ -57,7 +57,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="@string/button_order" />
+        android:text="@string/button_order"
+        android:visibility="visible" />
 
 </RelativeLayout>

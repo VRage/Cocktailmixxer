@@ -1,22 +1,21 @@
 package projekt.Matze;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import projekt.OwnList.CustomListViewAdapter;
-import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Cocktail;
-import projekt.helpclasses.User;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
@@ -30,16 +29,19 @@ public class ActivityCocktailList extends Activity {
 	CustomListViewAdapter CLW;
 	ListView lw;
 	Switch switcher;
+	Button newCocktail;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cocklist);
 		status = (CM_Status)getApplicationContext();
+		newCocktail = (Button)findViewById(R.id.cocktails_btnNewCocktail);
 		lw = (ListView) findViewById(R.id.cocktaillist_ListView);
 		switcher = (Switch) findViewById(R.id.cocktailslist_switch);
 		CLW = new CustomListViewAdapter(this, R.layout.activity_listitem,
 				status.get_CocktailList());
 		
+		final Builder builder = new Builder(this);
 		lw.setAdapter(CLW);
 		lw.setOnItemClickListener(new OnItemClickListener() {
 
@@ -56,8 +58,41 @@ public class ActivityCocktailList extends Activity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					final int arg2, long arg3) {
-				status.get_CocktailList().remove(arg2);
-				CLW.notifyDataSetChanged();
+				
+				
+				builder.setTitle("ACHTUNG!!")
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setMessage(
+								"Sind Sie sicher dass Sie >>"+status.get_CocktailList().get(arg2).getTitle()+"<< löschen wollen?")
+						.setPositiveButton("Löschen",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										
+										status.get_CocktailList().remove(arg2);
+										CLW.notifyDataSetChanged();
+										
+									}
+								})
+						.setNegativeButton("Abbruch",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+
+										dialog.cancel();
+									}
+								});
+				builder.show();
+				
+				
+				
+			
 				return false;
 			}
 		});
@@ -116,7 +151,15 @@ public class ActivityCocktailList extends Activity {
 				}
 			}
 		});
+		newCocktail.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(ActivityCocktailList.this,ActivityNewCocktail.class));
+				
+			}
+		});
 	}
-	
+
 
 }

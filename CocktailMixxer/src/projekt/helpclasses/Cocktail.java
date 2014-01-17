@@ -6,6 +6,8 @@ import java.util.List;
 
 import projekt.OwnList.RowItem;
 
+import android.widget.Toast;
+
 import com.example.cocktailmixxer.R;
 
 //
@@ -34,10 +36,12 @@ public class Cocktail extends RowItem implements Serializable{
 	Saft activeSaft;
 	//Gibt bytes zurück die per bluetooth gesendet werden
 	public byte[] getBluetoothSignal() {
-		String returnStr = "";
+		String returnStr = "AAAA";
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
-			returnStr+="  "+((Saft) SaftList_cocktail.get(i)).getMl();
+			if(SaftList_cocktail.get(i)!=null)
+			returnStr+=i+((Saft) SaftList_cocktail.get(i)).getMl();
 		}
+		returnStr+="BBBB";
 		return returnStr.getBytes();
 	}
 	public Saft getActiveSaft() {

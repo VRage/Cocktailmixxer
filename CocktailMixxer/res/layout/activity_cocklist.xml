@@ -34,17 +34,17 @@
         style="@style/Buttonstyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_above="@+id/cocktailslist_switch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/cocktaillist_ListView"
         android:text="@string/button_MakeNew" />
 
     <Switch
         android:id="@+id/cocktailslist_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cocktails_btnNewCocktail"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/cocktails_btnNewCocktail"
+        android:layout_alignLeft="@+id/cocktails_btnNewCocktail"
+        android:layout_alignParentBottom="true"
         android:text="Nur bestellbare Cocktails anzeigen" />
 
 </RelativeLayout>

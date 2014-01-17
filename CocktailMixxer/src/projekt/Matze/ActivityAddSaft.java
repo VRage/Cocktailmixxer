@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -42,10 +43,16 @@ public class ActivityAddSaft extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				status.get_ActiveCocktail().setActiveSaft(temp);
+				if(status.get_ActiveCocktail().get_SaftList_cocktail().contains(temp)){
+					Toast.makeText(getApplicationContext(), "Getränk bereits in Cocktailliste, \nbitte anderes Getränk wählen", Toast.LENGTH_LONG).show();
+				}
+				else{
+					status.get_ActiveCocktail().setActiveSaft(temp);
+					
+					startActivity(new Intent (ActivityAddSaft.this, ActivitySetMlSaft.class));
+					finish();
+				}
 				
-				startActivity(new Intent (ActivityAddSaft.this, ActivitySetMlSaft.class));
-				finish();
 			}
 		});
 	}

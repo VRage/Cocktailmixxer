@@ -21,6 +21,7 @@ public class ActivitySetMlSaft extends Activity {
 	SeekBar seekbarValueMl;
 	TextView MlLeft;
 	TextView MlActual;
+	TextView title;
 	Button NewSaft;
 	Cocktail cocktail;
 	Saft saft;
@@ -34,7 +35,8 @@ public class ActivitySetMlSaft extends Activity {
 		status = (CM_Status) getApplicationContext();
 		seekbarValueMl = (SeekBar) findViewById(R.id.addSaft_seekbar);
 		saft = status.get_ActiveCocktail().getActiveSaft();
-		
+		title= (TextView) findViewById(R.id.addsaft_title);
+		title.setText("Menge für "+saft.getTitle() + " wählen.");
 		MlLeft = (TextView) findViewById(R.id.addSaft_textViewMlLeft);
 		MlActual = (TextView) findViewById(R.id.addSaft_textViewMlActual);
 		NewSaft = (Button) findViewById(R.id.addSaft_ButtonNewSaft);
@@ -106,14 +108,19 @@ public class ActivitySetMlSaft extends Activity {
 			public void onClick(View v) {
 				int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
 				
-				
-				Toast.makeText(getApplicationContext(), Progress+"", Toast.LENGTH_LONG).show();
+				if(Progress >= 10){
+				//Toast.makeText(getApplicationContext(), Progress+"", Toast.LENGTH_LONG).show();
 				saft.setMl(Progress);
 				cocktail.setMlLeft(cocktail.getMlLeft()-Progress);
 
 
 				cocktail.addSaft((Saft) saft);
 				finish();
+				}
+				else 
+				{
+					Toast.makeText(getApplicationContext(), "getränk muss mindestens 10 ml enthalten", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 	}
