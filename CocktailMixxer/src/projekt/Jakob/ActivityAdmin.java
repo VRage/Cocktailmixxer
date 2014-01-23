@@ -78,7 +78,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 									public void onClick(DialogInterface dialog,
 											int which) {
 
-											safte.set(safte.indexOf((Saft)saftlist_intern.getItemAtPosition(arg2)), new Saft("",""));
+											safte.set(safte.indexOf((Saft)saftlist_intern.getItemAtPosition(arg2)), new Saft("","",0));
 										
 										adapter.notifyDataSetChanged();
 										
@@ -189,7 +189,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 								
 								for(int i=0;i<8;i++){
 									
-									safte.set(i, new Saft("",""));
+									safte.set(i, new Saft("","",0));
 								}
 								adapter.notifyDataSetChanged();
 								

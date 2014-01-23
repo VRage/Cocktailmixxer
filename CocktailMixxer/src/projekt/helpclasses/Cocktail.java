@@ -26,22 +26,26 @@ import com.example.cocktailmixxer.R;
 
 public class Cocktail extends RowItem implements Serializable{
 	static String Name;
-	int C_ID;
 	static String desc;
-
+	public String ret;
 	final public int cocktailsize = 500;
 	int mlLeft=cocktailsize;
 	int mlFull=0;
 	List<? super Saft> SaftList_cocktail;
 	Saft activeSaft;
 	//Gibt bytes zurück die per bluetooth gesendet werden
-	public byte[] getBluetoothSignal() {
-		String returnStr = "AAAA";
+	public byte[] getBluetoothSignal(List<? super Saft>  SaftListIntern) {
+		String returnStr = "\r\nAAAA";
+		List<? super Saft> Saftlist=SaftListIntern;
+		
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
-			if(SaftList_cocktail.get(i)!=null)
-			returnStr+=i+((Saft) SaftList_cocktail.get(i)).getMl();
+			if(SaftList_cocktail.get(i)!=null){
+				
+				returnStr+=SaftListIntern.indexOf(((Saft) SaftList_cocktail.get(i)))+1+""+((Saft) SaftList_cocktail.get(i)).getMl();
+			}
 		}
-		returnStr+="BBBB";
+		returnStr+="BBBB\r\n";
+		ret = returnStr;
 		return returnStr.getBytes();
 	}
 	public Saft getActiveSaft() {
@@ -93,7 +97,15 @@ public class Cocktail extends RowItem implements Serializable{
 	public List<RowItem> get_SaftList_cocktail() {
 		return (List<RowItem>) SaftList_cocktail;
 	}
-
+ public double getAlkgehalt(){
+	 double alk =0;
+	 for (int i = 0; i < SaftList_cocktail.size(); i++) {
+			if(SaftList_cocktail.get(i)!=null){
+				alk =((Saft) SaftList_cocktail.get(i)).getAlkMl(); 
+			}
+		}
+	 return alk;
+ }
 	public void addSaft(Saft saft) {
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
 			if(((Saft)SaftList_cocktail.get(i)).getTitle()==saft.getTitle()){

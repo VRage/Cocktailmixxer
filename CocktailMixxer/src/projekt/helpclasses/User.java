@@ -153,9 +153,7 @@ public class User extends RowItem implements Serializable{
 		this.Birthdate = date;
 	}
 	
-	public void setFahrtuechtigIn() {
-		
-	}
+
 	public void setAlter()
     {    
 
@@ -180,7 +178,7 @@ public class User extends RowItem implements Serializable{
 	
 	public void setAlkgehalt(double alk)
 	{
-		AlkGehalt = alk;
+		AlkGehalt += alk;
 	}
 	
 	public void calcAlkAnteil() {

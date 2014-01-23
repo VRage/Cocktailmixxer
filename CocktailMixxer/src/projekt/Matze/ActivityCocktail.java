@@ -65,9 +65,14 @@ public class ActivityCocktail extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// Sendet Byte Array an Bluetooth 
-				service.write(status.get_ActiveCocktail().getBluetoothSignal());
-				if (status.get_ActiveUser() != null)
+
+				service.write(status.get_ActiveCocktail().getBluetoothSignal(status.get_SaftList_intern()));
+				Toast.makeText(getApplicationContext(), status.get_ActiveCocktail().ret, Toast.LENGTH_LONG).show();
+				if (status.get_ActiveUser() != null){
 					status.get_ActiveUser().addCocktail(status.get_ActiveCocktail());
+					status.get_ActiveUser().setAlkgehalt(status.get_ActiveCocktail().getAlkgehalt());
+					status.get_ActiveUser().calcAlkAnteil();
+				}
 				finish();
 			}
 		});

@@ -22,12 +22,18 @@ import com.example.cocktailmixxer.R;
 public class Saft extends RowItem implements Serializable, Cloneable {
 	/**
 	 * 
+	 *
 	 */
-	private static final long serialVersionUID = 1L;
+	static int imageId = R.drawable.saeft_icon;
+	private double AlkGehalt;
+	private int Behaelter;
+	public String Kategorie;
+	private static final long serialVersionUID = 11L;
 
-	public Saft(String title, String description) {
+	public Saft(String title, String description, int procent) {
 		super(imageId, title, description);
 		// TODO Auto-generated constructor stub
+		this.procent=procent;
 	}
 
 	private int S_ID;
@@ -55,29 +61,16 @@ public class Saft extends RowItem implements Serializable, Cloneable {
 		return super.clone();
 	}
 
-	static int imageId = R.drawable.saeft_icon;
-	private double AlkGehalt;
-	private int Behaelter;
-	public String Kategorie;
 
-	public void setName() {
 
-	}
 
-	public void setAlkGehalt() {
 
-	}
 
-	public void setBehaelter() {
 
-	}
 
-	public void setKategorie() {
-
-	}
-
-	public void getAlkMl() {
-
+	public double getAlkMl() {
+		double ret = ml/100*procent;
+		return ret;
 	}
 
 	public String toString() {

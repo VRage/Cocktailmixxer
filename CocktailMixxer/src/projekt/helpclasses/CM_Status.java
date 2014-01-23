@@ -151,15 +151,15 @@ public class CM_Status extends Application implements Serializable {
 		// UserList.add(new User("MaxSchuster", 55.0, 155.0, true,
 		// new GregorianCalendar(1987, 06, 18)));
 
-		SaftList_all.add(new Saft("Orangen Saft", "Sehr fruchtiger Saft #leckerfruchtig"));
-		SaftList_all.add(new Saft("Red Bull", "Macht wach also nicht zuviel davon \n#wake me up up up "));
-		SaftList_all.add(new Saft("Cola", "Lecker zeug"));
-		SaftList_all.add(new Saft("Ice Tee", "Auch lecker"));
-		SaftList_all.add(new Saft("Wodka", "Russenwasser \n#YOLO"));
-		SaftList_all.add(new Saft("Rum", "Das Zeug um sich wegzubeamen \n#Edelshit"));
-		SaftList_all.add(new Saft("Baileys", "MUhahahah"));
+		SaftList_all.add(new Saft("Orangen Saft", "Sehr fruchtiger Saft #leckerfruchtig",0));
+		SaftList_all.add(new Saft("Red Bull", "Macht wach also nicht zuviel davon \n#wake me up up up ",0));
+		SaftList_all.add(new Saft("Cola", "Lecker zeug",0));
+		SaftList_all.add(new Saft("Ice Tee", "Auch lecker",0));
+		SaftList_all.add(new Saft("Wodka", "Russenwasser \n#YOLO",38));
+		SaftList_all.add(new Saft("Rum", "Das Zeug um sich wegzubeamen \n#Edelshit",38));
+		SaftList_all.add(new Saft("Baileys", "MUhahahah",17));
 		for (int i = 0; i < 8; i++) {
-			SaftList_intern.add(new Saft("", ""));
+			SaftList_intern.add(new Saft("", "",0));
 		}
 
 		// activeUser = (User) UserList.get(0);
