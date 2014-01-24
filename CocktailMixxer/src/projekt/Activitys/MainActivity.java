@@ -202,7 +202,7 @@ public class MainActivity extends Activity {
         	startActivityForResult((new Intent(MainActivity.this, ActivityAdmin.class)),0);
             return true;
         case R.id.cleaning:
-        	String returnStr = "\r\nAAAA10102010301040105010601070108010BBBB\r\n";
+        	String returnStr = "\r\nAAAA13102310331043105310631073108310BBBB\r\n";
         	mCommandService.write(returnStr.getBytes());
         default:
             return super.onOptionsItemSelected(item);

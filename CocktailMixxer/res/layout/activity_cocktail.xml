@@ -42,16 +42,6 @@
         android:layout_below="@+id/icon"
         android:text="Enthaltene Getränke:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <ListView
-        android:id="@+id/Cocktail_ListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Cocktail_btnOrder"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3" >
-    </ListView>
-
     <Button
         android:id="@+id/Cocktail_btnOrder"
         android:layout_width="wrap_content"
@@ -61,5 +51,15 @@
         android:layout_alignParentRight="true"
         android:text="@string/button_order"
         android:visibility="visible" />
+
+    <ListView
+        android:id="@+id/Cocktail_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Cocktail_btnOrder"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3" >
+
+    </ListView>
 
 </RelativeLayout>

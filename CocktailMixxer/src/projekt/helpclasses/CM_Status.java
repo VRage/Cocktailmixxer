@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.cocktailmixxer.R;
+
 import projekt.OwnList.RowItem;
 import android.app.Application;
 import android.os.Environment;
@@ -143,22 +145,30 @@ public class CM_Status extends Application implements Serializable {
 		}
 	}
 
-	public CM_Status() {
-		// UserList.add(new User("MaxSchuster", 55.0, 155.0, true,
-		// new GregorianCalendar(1987, 06, 18)));
+	public void setUpCocktails(){
+		
+		SaftList_all.add(new Saft("Orangen Saft", "",0));
+		SaftList_all.add(new Saft("Zitronen Saft", "",0));
+		SaftList_all.add(new Saft("Ananas Saft", "",0));
+		SaftList_all.add(new Saft("Maracujasaft", "",0));
+		SaftList_all.add(new Saft("Grenadine", "",0));
+		SaftList_all.add(new Saft("Red Bull", "",0));
+		SaftList_all.add(new Saft("Cola", "",0));
+		SaftList_all.add(new Saft("Ice Tee", "",0));
+		SaftList_all.add(new Saft("Tequila", "",38));
+		SaftList_all.add(new Saft("Wodka", "",38));
+		SaftList_all.add(new Saft("Rum", "",38));
+		SaftList_all.add(new Saft("Baileys", "",17));
 
-		SaftList_all.add(new Saft("Orangen Saft", "Sehr fruchtiger Saft #leckerfruchtig",0));
-		SaftList_all.add(new Saft("Red Bull", "Macht wach also nicht zuviel davon \n#wake me up up up ",0));
-		SaftList_all.add(new Saft("Cola", "Lecker zeug",0));
-		SaftList_all.add(new Saft("Ice Tee", "Auch lecker",0));
-		SaftList_all.add(new Saft("Wodka", "Russenwasser \n#YOLO",38));
-		SaftList_all.add(new Saft("Rum", "Das Zeug um sich wegzubeamen \n#Edelshit",38));
-		SaftList_all.add(new Saft("Baileys", "MUhahahah",17));
+	}
+	
+	public CM_Status() {
+		setUpCocktails();
+
 		for (int i = 0; i < 8; i++) {
 			SaftList_intern.add(new Saft("", "",0));
 		}
 
-		// activeUser = (User) UserList.get(0);
 
 	}
 
