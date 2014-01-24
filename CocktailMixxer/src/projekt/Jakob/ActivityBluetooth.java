@@ -27,7 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Jakob Nisin
 public class ActivityBluetooth extends Activity {
     // Debugging
     private static final String TAG = "DeviceListActivity";

@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class ActivityCocktail extends Activity {
 	CM_Status status;
 	ListView lw;
@@ -70,7 +72,7 @@ public class ActivityCocktail extends Activity {
 				Toast.makeText(getApplicationContext(), status.get_ActiveCocktail().ret, Toast.LENGTH_LONG).show();
 				if (status.get_ActiveUser() != null){
 					status.get_ActiveUser().addCocktail(status.get_ActiveCocktail());
-					status.get_ActiveUser().setAlkgehalt(status.get_ActiveCocktail().getAlkgehalt());
+					status.get_ActiveUser().setAlkgehalt();
 					status.get_ActiveUser().calcAlkAnteil();
 				}
 				finish();

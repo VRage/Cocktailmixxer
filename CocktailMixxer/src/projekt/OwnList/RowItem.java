@@ -5,7 +5,9 @@ import java.io.Serializable;
 import android.widget.Toast;
 
 import projekt.helpclasses.Saft;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class RowItem implements Serializable,Cloneable{
 	/**
 	 * 

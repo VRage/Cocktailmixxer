@@ -21,39 +21,41 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
+/*
+ * Costum List View Adapter for Costum List Items
+ * Implemented to use Pistures in Lists.
+ */
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> implements
 		Serializable {
-	/**
-	 * 
-	 */
+	//declare saving.
 	private static final long serialVersionUID = 1L;
-	ViewHolder holder;
-	Context context;
+	
 	public final static String APP_PATH_SD_CARD = "/cocktailmixxer/userpics";
 	String fullPath = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_CARD;
 
+	
+	
+	//start programming of class Costum ListViewAdapter
+	ViewHolder holder;
+	Context context;
+	
+	//setDesc of RowItem
+	//will compare actual Activity description, different Descriptions needet in several Activitys
 	public void setDesc(RowItem rowItem) {
-		ActivityManager am = (ActivityManager) context
-				.getSystemService(Context.ACTIVITY_SERVICE);
 
-		// Toast.makeText(getContext(), getContext().getClass().getSimpleName(),
-		// Toast.LENGTH_SHORT).show();
 		if (rowItem instanceof Saft) {
-			if (getContext().getClass().getSimpleName()
-					.equals("ActivityAddSaft"))
-				// Toast.makeText(getContext(), "true",
-				// Toast.LENGTH_SHORT).show();
-				holder.txtDesc.setText(rowItem.getDesc());
-			else if (getContext().getClass().getSimpleName()
-					.equals("ActivityAdmin"))
-				holder.txtDesc.setText(rowItem.getDesc());
-			else
-				// holder.txtDesc.setText(((Saft) rowItem).getProcent());
+			if (getContext().getClass().getSimpleName().equals("ActivityNewCocktail")||getContext().getClass().getSimpleName().equals("ActivityCocktail"))
 				holder.txtDesc.setText("\nml Anteil im Cocktail: \n"
-						+ ((Saft) rowItem).getMl() + "/500 ml");
-		} else
+						+ ((Saft) rowItem).getMl() + "/"+new Cocktail(0, null, null).cocktailsize+" ml");
+			else
+				holder.txtDesc.setText(rowItem.getDesc());	
+			
+		} 
+		else
 			holder.txtDesc.setText(rowItem.getDesc());
 
 	}

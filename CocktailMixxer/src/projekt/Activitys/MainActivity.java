@@ -198,52 +198,17 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.admin:
+        case R.id.Admin:
         	startActivityForResult((new Intent(MainActivity.this, ActivityAdmin.class)),0);
             return true;
+        case R.id.cleaning:
+        	String returnStr = "\r\nAAAA10102010301040105010601070108010BBBB\r\n";
+        	mCommandService.write(returnStr.getBytes());
         default:
             return super.onOptionsItemSelected(item);
         }
     }
 
-
-//	public static boolean saveStatus(CM_Status status) {
-//		try {
-//			File statusFile = new File(fullPath, "cm_status.dat");
-//			statusFile.createNewFile();
-//			FileOutputStream fos = new FileOutputStream(statusFile);
-//			ObjectOutputStream oos = new ObjectOutputStream(fos);
-//			oos.writeObject(status);
-//			oos.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//
-//		return true;
-//	}
-//
-//	public static CM_Status getStatus() { // Changed new method
-//		File statusFile = new File(fullPath, "cm_status.dat");
-//		if (statusFile.exists()) {
-//			try {
-//
-//				FileInputStream fis = new FileInputStream(statusFile);
-//				ObjectInputStream is = new ObjectInputStream(fis);
-//				Object readObject = is.readObject();
-//				is.close();
-//
-//				if (readObject != null && readObject instanceof CM_Status) {
-//					return (CM_Status) readObject;
-//				}
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} catch (ClassNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return null;
-//	}
 	private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

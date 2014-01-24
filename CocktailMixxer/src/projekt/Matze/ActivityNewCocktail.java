@@ -18,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class ActivityNewCocktail extends Activity {
 	SeekBar seekbar;
 	TextView Name;

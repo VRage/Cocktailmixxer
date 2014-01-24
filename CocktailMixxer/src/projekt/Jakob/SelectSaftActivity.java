@@ -18,6 +18,9 @@ import android.widget.ListView;
 
 import com.example.cocktailmixxer.R;
 
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Jakob Nisin
 public class SelectSaftActivity extends Activity {
 	CM_Status status;
 	List<RowItem> safte;

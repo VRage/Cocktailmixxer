@@ -14,7 +14,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class ActivityAddSaft extends Activity {
 	CM_Status status;
 	CustomListViewAdapter CLW;
@@ -62,9 +64,6 @@ public class ActivityAddSaft extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_cocktail, menu);
 		return true;
-	}
-	public void saefte_btnNewCocktails_onClick(View v){
-		startActivity(new Intent(ActivityAddSaft.this, NewSaft.class));
 	}
 
 

@@ -20,7 +20,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Jakob Nisin
 public class ActivityAdmin extends Activity implements OnClickListener {
 	CM_Status status;
 	List<RowItem> safte;

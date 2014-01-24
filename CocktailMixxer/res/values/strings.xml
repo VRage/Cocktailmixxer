@@ -46,5 +46,6 @@
     <string name="title_not_connected">Nicht verbunden</string>
     <string name="Admin">Admin</string>
     <string name="title_activity_select_saft">Saft für Behälter auswählen</string>
+    <string name="cleaning">Reinigung starten</string>
 
 </resources>

@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class ActivitySetMlSaft extends Activity {
 	CM_Status status;
 	SeekBar seekbarValueMl;
@@ -41,6 +43,7 @@ public class ActivitySetMlSaft extends Activity {
 		MlActual = (TextView) findViewById(R.id.addSaft_textViewMlActual);
 		NewSaft = (Button) findViewById(R.id.addSaft_ButtonNewSaft);
 		cocktail = status.get_ActiveCocktail();
+		seekbarValueMl.setMax(cocktail.cocktailsize);
 		
 
 		// Setze menge auf Progress

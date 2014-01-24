@@ -42,6 +42,7 @@ public final class R {
         public static final int tequilasunrise=0x7f02000d;
     }
     public static final class id {
+        public static final int Admin=0x7f09004d;
         public static final int Cocktail_ListView=0x7f09002d;
         public static final int Cocktail_btnOrder=0x7f09002e;
         public static final int Settings_BtnBluetooth=0x7f090044;
@@ -53,7 +54,6 @@ public final class R {
         public static final int addSaft_textViewMlLeft=0x7f09000d;
         public static final int addUser_back=0x7f090003;
         public static final int addsaft_title=0x7f09000c;
-        public static final int admin=0x7f09004d;
         public static final int admin_behalter1=0x7f090015;
         public static final int admin_behalter2=0x7f090016;
         public static final int admin_behalter3=0x7f090017;
@@ -73,6 +73,7 @@ public final class R {
         public static final int btn_User=0x7f090034;
         public static final int btn_clear=0x7f090047;
         public static final int btn_newuser=0x7f090046;
+        public static final int cleaning=0x7f09004e;
         public static final int cocktail_desc=0x7f09002b;
         public static final int cocktail_header=0x7f09002a;
         public static final int cocktaillist_ListView=0x7f090026;
@@ -177,6 +178,7 @@ public final class R {
         public static final int button_order=0x7f06001c;
         public static final int button_save=0x7f060013;
         public static final int button_show=0x7f060017;
+        public static final int cleaning=0x7f06002d;
         public static final int hello=0x7f06000f;
         public static final int hello_world=0x7f060002;
         public static final int image=0x7f060011;

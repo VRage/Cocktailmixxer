@@ -23,7 +23,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Matthias Wildberg
 public class ActivityCocktailList extends Activity {
 	CM_Status status;
 	CustomListViewAdapter CLW;

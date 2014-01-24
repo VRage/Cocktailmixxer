@@ -1,11 +1,14 @@
 package projekt.Jakob;
-
+//@ Project : Cocktailmixxer
+//@ Date : 31.10.2013
+//@ Author : Jakob Nisin
 import java.text.DecimalFormat;
 import java.util.List;
 
 import projekt.OwnList.CustomListViewAdapter;
 import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
+import projekt.helpclasses.Cocktail;
 import projekt.helpclasses.User;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.ListView;
@@ -115,6 +119,50 @@ public class ActivityUser extends Activity {
 			sp1.setVisibility(View.VISIBLE);
 			sp1.setSelection(adapter.getPosition(status.get_ActiveUser()));
 		}
+		final Builder builder = new Builder(this);
+		cocktails_list.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					final int arg2, long arg3) {
+				
+				builder.setTitle("ACHTUNG!!")
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setMessage(
+								"Sind Sie sicher, dass Sie den Saft löschen wollen?")
+						.setPositiveButton("Löschen",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+											status.get_ActiveUser().get_CocktailList().remove((Cocktail)cocktails_list.getItemAtPosition(arg2));
+											status.get_ActiveUser().setAlkgehalt();
+											status.get_ActiveUser().calcAlkAnteil();
+											Promille.setText("Aktueller Promillewert: "
+													+ f.format(status.get_ActiveUser().getPromille())
+													+ "‰");
+											adapter_cocktail.notifyDataSetChanged();
+										
+									}
+								})
+						.setNegativeButton("Abbruch",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+
+										dialog.cancel();
+									}
+								}).show();
+
+			
+				return false;
+			}
+		});
+		
 	}
 
 	@Override
