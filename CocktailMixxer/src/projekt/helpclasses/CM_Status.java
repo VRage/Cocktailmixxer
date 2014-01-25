@@ -21,27 +21,18 @@ import android.os.Environment;
 //  @ Project : Cocktailmixxer
 //  @ Date : 31.10.2013
 //  @ Author : Matthias Wildberg, Jakob Nisin
-
+//  @ Description: Verwaltung alles wichtigen Daten, Listen und funktionen.
 
 public class CM_Status extends Application implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;	//versionsnummer für die serialisierung
 	@SuppressWarnings("unchecked")
 	User activeUser = null;
-	private static int Userid = 100;
+	private static int Userid = 100; //Userid wird angelegt um User genau zuzuweisen
 	Cocktail activeCocktail;
-	private BluetoothSerialService BTservice;
-
-	public BluetoothSerialService getBTservice() {
-		return BTservice;
-	}
-
-	public void setBTservice(BluetoothSerialService bTservice) {
-		BTservice = bTservice;
-	}
-
+	private BluetoothSerialService BTservice; // Bluetooth funktion anlegen
+	
+	//Speicherung des Status, User, Cocktails und Säfte in Arraylisten
 	List<? super Object> status = new ArrayList<Object>();
 	List<? super User> UserList = (List<User>) new ArrayList<User>();
 	List<? super Cocktail> CocktailList = (List<Cocktail>) new ArrayList<Cocktail>();
@@ -49,16 +40,16 @@ public class CM_Status extends Application implements Serializable {
 	List<? super Saft> SaftList_intern = (List<Saft>) new ArrayList<Saft>();
 	List<? super Saft> SaftList_all = (List<Saft>) new ArrayList<Saft>();
 
+	//Speicherorte werden festgelegt
 	public final static String APP_PATH_SD_USERPICS = "/cocktailmixxer/userpics";
-	public final static String STATUS_FILENAME = "CM_Status"; // Changed new //
-																// Parameter
+	public final static String STATUS_FILENAME = "CM_Status"; 
 	String fullPathPic = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_USERPICS;
 	public final static String APP_PATH_SD_APPLICATION = "/cocktailmixxer/";
 	static String fullPath = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + APP_PATH_SD_APPLICATION;
 
-	public void saveAll() {
+	public void saveAll() {	//Alle Objecte speichern
 		try {
 			saveToSerFile("User", UserList);
 			saveToSerFile("Cocktail", CocktailList);
@@ -71,7 +62,7 @@ public class CM_Status extends Application implements Serializable {
 		}
 	}
 
-	public void loadAll() {
+	public void loadAll() {	//Alle Objecte laden, Listen aktualisieren
 		try {
 			UserList = (List<User>) loadFromSerFile("User");
 			CocktailList = (List<Cocktail>) loadFromSerFile("Cocktail");
@@ -88,10 +79,18 @@ public class CM_Status extends Application implements Serializable {
 		}
 	}
 
+	
+	// Getter und Setter Methoden für die Attribute
 	public static int getUserid() {
-
 		return Userid;
+	}
+	
+	public BluetoothSerialService getBTservice() {
+		return BTservice;
+	}
 
+	public void setBTservice(BluetoothSerialService bTservice) {
+		BTservice = bTservice;
 	}
 
 	public static void inkUserid() {
@@ -144,6 +143,16 @@ public class CM_Status extends Application implements Serializable {
 			activeCocktail = (Cocktail) status.get(2);
 		}
 	}
+	
+	public Cocktail get_ActiveCocktail() {
+		return activeCocktail;
+	}
+
+	public void set_ActiveCocktail(Cocktail activeCocktail) { // Changed new
+																// method
+		this.activeCocktail = activeCocktail;
+		setStatus();
+	}
 
 	public void setUpCocktails(){
 		
@@ -163,17 +172,17 @@ public class CM_Status extends Application implements Serializable {
 	}
 	
 	public CM_Status() {
-		setUpCocktails();
+		setUpCocktails(); //statusobject mit vordefinierten Säften wird erstellt
 
 		for (int i = 0; i < 8; i++) {
-			SaftList_intern.add(new Saft("", "",0));
+			SaftList_intern.add(new Saft("", "",0)); //"leere Säfte" werden in die Maschinensaftliste eingefügt
 		}
 
 
 	}
 
 	public void add_UserItem(User user) {
-		UserList.add(user);
+		UserList.add(user);						//Neuer user wird erstellt, in der Liste hinzugefügt und auf dem Speicher gespichert
 		try {
 			saveToSerFile("User", UserList);
 		} catch (IOException e) {
@@ -183,7 +192,7 @@ public class CM_Status extends Application implements Serializable {
 	}
 
 	public void add_CocktailItem(Cocktail cocktail) {
-		CocktailList.add(cocktail);
+		CocktailList.add(cocktail);				//Cocktails werden erstellt, in der Liste hinzugefügt und auf dem Speicher gespichert
 		try {
 			saveToSerFile("Cocktail", CocktailList);
 		} catch (IOException e) {
@@ -193,31 +202,23 @@ public class CM_Status extends Application implements Serializable {
 	}
 
 	public void delete_UserItem(User user) {
-		UserList.remove(user);
+		UserList.remove(user);					//user wird aus der Liste entfernt, bild vom user, falls vorhanden wird gelöscht
 		File imgFile = new File(fullPathPic, user.getID() + ".jpg");
 		if (imgFile.exists()) {
 			imgFile.delete();
 		}
 	}
 
-	public Cocktail get_ActiveCocktail() {
-		return activeCocktail;
-	}
 
-	public void set_ActiveCocktail(Cocktail activeCocktail) { // Changed new
-																// method
-		this.activeCocktail = activeCocktail;
-		setStatus();
-	}
 
 	public synchronized void saveToSerFile(String name,
-			List<? extends Object> obj) throws IOException {
+			List<? extends Object> obj) throws IOException {	// Methode zur Speicherung eines Objectes
 		try {
 
-			// save to file
-			File file = new File(fullPath, name + ".dat");
+
+			File file = new File(fullPath, name + ".dat");		// Speicherdatei wird angelegt
 			if (file.exists()) {
-				file.delete();
+				file.delete();									// Falls vorhanden wird die datei überschrieben
 			}
 
 			file.getParentFile().mkdirs();
@@ -225,7 +226,7 @@ public class CM_Status extends Application implements Serializable {
 
 			FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(obj);
+			oos.writeObject(obj);								// Object wird in der Datei gespeichert
 			oos.close();
 
 		} catch (FileNotFoundException e) {
@@ -239,10 +240,10 @@ public class CM_Status extends Application implements Serializable {
 
 	public synchronized Object loadFromSerFile(String name) throws IOException,
 			ClassNotFoundException {
-		File file = new File(fullPath, name + ".dat");
+		File file = new File(fullPath, name + ".dat");				// Speicherdatei wird angelegt
 		FileInputStream fis = new FileInputStream(file);
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		Object result = ois.readObject();
+		Object result = ois.readObject();							// Objecte werden geladen
 		ois.close();
 		return result;
 	}

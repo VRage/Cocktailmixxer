@@ -21,10 +21,13 @@ import com.example.cocktailmixxer.R;
 //@ Project : Cocktailmixxer
 //@ Date : 31.10.2013
 //@ Author : Jakob Nisin
+//@ Description: Saft wird ausgewählt und in einer Saftliste für die Maschine gespeichert, 
+//              so weiß die Cocktailmaschine in welcher Flasche welcher Saft enthalten ist.
 public class SelectSaftActivity extends Activity {
+	// Deklaration ...
 	CM_Status status;
-	List<RowItem> safte;
-	List<RowItem> safte_intern;
+	List<RowItem> safte; // liste aller Säfte die zur verfügung stehen
+	List<RowItem> safte_intern; // liste der Säfte die in der Maschine sind
 	ListView saftlist_all;
 	CustomListViewAdapter adapter;
 
@@ -32,6 +35,7 @@ public class SelectSaftActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_saft);
+		// Deklaration des Status, Saftlisten etc.
 		status = (CM_Status) getApplicationContext();
 		saftlist_all = (ListView) findViewById(R.id.selectsaft_saftlistall);
 		safte = status.get_SaftList_all();
@@ -42,8 +46,10 @@ public class SelectSaftActivity extends Activity {
 
 		saftlist_all.setOnItemClickListener(new OnItemClickListener() {
 
-			Intent sender = getIntent();
-			String extraData = sender.getExtras().getString("Bottlenumber");
+			Intent sender = getIntent(); // "Empfangen" der zusatzinformation
+			String extraData = sender.getExtras().getString("Bottlenumber");// also
+																			// die
+																			// Flaschennummer
 			int bottlenumber = Integer.parseInt(extraData);
 
 			@Override
@@ -52,7 +58,15 @@ public class SelectSaftActivity extends Activity {
 				boolean hat = false;
 				for (int j = 0; j < safte_intern.size(); j++) {
 					if (status.get_SaftList_intern().contains(
-							status.get_SaftList_all().get(arg2))) {
+							status.get_SaftList_all().get(arg2))) { // Abfrage
+																	// ob der
+																	// Saft
+																	// schon in
+																	// der Liste
+																	// für die
+																	// Maschine
+																	// enthalten
+																	// ist
 						Toast.makeText(getApplicationContext(),
 								"Saft schon in der Liste enthalten",
 								Toast.LENGTH_SHORT).show();
@@ -61,18 +75,22 @@ public class SelectSaftActivity extends Activity {
 
 					}
 				}
-					if (!hat) {
-						safte_intern.set(bottlenumber - 1, status
-								.get_SaftList_all().get(arg2));
-						try {
-							status.saveToSerFile("Saftintern", status.get_SaftList_intern());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						finish();
+				if (!hat) {
+					safte_intern.set(bottlenumber - 1, status
+							.get_SaftList_all().get(arg2)); // ausgewählter Saft
+															// wird in die Liste
+															// für die Maschine
+															// gespeichert
+					try {
+						status.saveToSerFile("Saftintern",
+								status.get_SaftList_intern());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				
+					finish();
+				}
+
 			}
 		});
 	}
