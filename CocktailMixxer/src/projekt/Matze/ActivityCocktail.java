@@ -29,11 +29,7 @@ public class ActivityCocktail extends Activity {
 	BluetoothSerialService service;
 	Button order;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		
-		
-		
-		
+	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cocktail);
 		status = (CM_Status) getApplicationContext();

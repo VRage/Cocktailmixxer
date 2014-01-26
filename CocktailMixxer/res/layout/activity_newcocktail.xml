@@ -35,7 +35,6 @@
         android:layout_height="280dp"
         android:layout_above="@+id/newCocktail_btnBestellen"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/newCocktail_btnNewSaft"
         android:layout_weight="7.35" >
 
     </ListView>
@@ -44,6 +43,7 @@
         android:id="@+id/icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_above="@+id/newCocktail_btnNewSaft"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/list_textView"
         android:background="@color/White"
@@ -65,26 +65,26 @@
         <requestFocus />
     </EditText>
 
+    <Button
+        android:id="@+id/newCocktail_btnNewSaft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/newCocktail_listSaefte"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="newCocktail_OnClick_newSaft"
+        android:text="@string/button_newSaft" />
+
     <EditText
         android:id="@+id/newCocktail_editTextDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/icon"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/newCocktail_editTextName"
         android:layout_toRightOf="@+id/icon"
         android:layout_weight="5.03"
         android:ems="10"
         android:hint="Beschreibung"
         android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/newCocktail_btnNewSaft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/icon"
-        android:onClick="newCocktail_OnClick_newSaft"
-        android:text="@string/button_newSaft" />
 
 </RelativeLayout>

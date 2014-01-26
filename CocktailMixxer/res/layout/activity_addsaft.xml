@@ -42,24 +42,29 @@
         android:layout_alignParentRight="true"
         android:text="@string/button_MakeNew" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/addSaft_ButtonNewSaft"
         android:layout_below="@+id/addSaft_textViewMlActual" >
 
         <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
+            android:id="@+id/Icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:src="@drawable/glas" />
 
         <SeekBar
             android:id="@+id/addSaft_seekbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:rotation="270" />
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
