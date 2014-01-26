@@ -177,7 +177,7 @@ public class User extends RowItem implements Serializable {
 	}
 
 	public void setAlkgehalt() {		//Alkoholgehalt aller Cocktails wird addiert
-		AlkGehalt =0;
+		AlkGehalt =0.0;
 		for (int i = 0; i < cocktails.size(); i++) {
 			AlkGehalt += ((Cocktail) cocktails.get(i)).getAlkgehalt();
 		}

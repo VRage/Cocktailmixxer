@@ -41,6 +41,7 @@ public class Saft extends RowItem implements Serializable, Cloneable {
 
 	public void setMl(int ml) {
 		this.ml = ml;
+		AlkGehalt = getAlkMl();
 	}
 
 	private String Name;
@@ -55,14 +56,8 @@ public class Saft extends RowItem implements Serializable, Cloneable {
 	}
 
 
-
-
-
-
-
-
 	public double getAlkMl() {
-		double ret = ml/100*procent;
+		double ret = ((double)ml)/100*procent;
 		return ret;
 	}
 

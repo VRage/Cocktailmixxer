@@ -162,6 +162,11 @@ public class ActivityCocktailList extends Activity {
 			}
 		});
 	}
+	@Override
+	protected void onResume() {
+		CLW.notifyDataSetChanged();
+		super.onResume();
+	}
 
 
 }
