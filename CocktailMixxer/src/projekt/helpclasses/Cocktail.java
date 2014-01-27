@@ -31,8 +31,11 @@ public class Cocktail extends RowItem implements Serializable{
 		
 		for (int i = 0; i < SaftList_cocktail.size(); i++) {
 			if(SaftList_cocktail.get(i)!=null){
-				
-				returnStr+=SaftListIntern.indexOf(((Saft) SaftList_cocktail.get(i)))+1+""+((Saft) SaftList_cocktail.get(i)).getMl();
+				if(((Saft) SaftList_cocktail.get(i)).getMl()<100)
+					
+					returnStr+=SaftListIntern.indexOf(((Saft) SaftList_cocktail.get(i)))+1+"0"+((Saft) SaftList_cocktail.get(i)).getMl();
+				else 
+					returnStr+=SaftListIntern.indexOf(((Saft) SaftList_cocktail.get(i)))+1+""+((Saft) SaftList_cocktail.get(i)).getMl();
 			}
 		}
 		returnStr+="BBBB\r\n";

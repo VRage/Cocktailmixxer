@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/icon"
+        android:layout_below="@+id/newCocktail_editTextDesc"
         android:onClick="newCocktail_OnClick_newSaft"
         android:text="@string/button_newSaft" />
 
