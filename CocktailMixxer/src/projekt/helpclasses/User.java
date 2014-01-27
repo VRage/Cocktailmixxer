@@ -12,25 +12,25 @@ import projekt.OwnList.RowItem;
 //@ Project : Cocktailmixxer
 //@ Date : 31.10.2013
 //@ Author : Matthias Wildberg, Jakob Nisin
-
+//@ Description: Klasse User zur definition eines Benutzers
 public class User extends RowItem implements Serializable {
 
 	private static final long serialVersionUID = 11L;
 	public int icon;
-
+	//Notwendige Attribute
 	private static String B_Name;
 	private int ID;
 	private double Weight = 0.0;
 	private double Length = 0.0;
 	private double AlkGehalt;
 	private double Promille;
-	private List<? super Cocktail> cocktails = (List<Cocktail>) new ArrayList<Cocktail>();
+	private List<? super Cocktail> cocktails = (List<Cocktail>) new ArrayList<Cocktail>();  //Liste Getrunkener Cocktails
 	private Boolean Geschlecht;
 	public int Alter = 0;
 	public GregorianCalendar Birthdate;
 
 	@Override
-	public int hashCode() {
+	public int hashCode() {  // Generierung eines Hashcodes, notwendig für Serialisierung und damit der Aktive User richtig bei App neustart angezeigt wird
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result
@@ -47,7 +47,7 @@ public class User extends RowItem implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) {  // Vergleichsmethode 
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
@@ -77,8 +77,8 @@ public class User extends RowItem implements Serializable {
 	}
 
 	public User(String name, double weight, double length, boolean gesch,
-			GregorianCalendar birth) {
-		super(CM_Status.getUserid(), name, "");
+			GregorianCalendar birth) {					// Konstruktor, Attribute werden zugewiesen
+		super(CM_Status.getUserid(), name, "");	
 		B_Name = name;
 		Weight = weight;
 		Length = length;
@@ -89,9 +89,11 @@ public class User extends RowItem implements Serializable {
 		AlkGehalt = 0.0;
 		Promille = 0.0;
 		setDescription();
-		CM_Status.inkUserid();
+		CM_Status.inkUserid();							// Statische User id wird hochgezählt
 	}
-
+	
+	
+	//Getter und setter Methoden für die Attribute
 	public List<RowItem> get_CocktailList() {
 		return (List<RowItem>) cocktails;
 	}
@@ -157,7 +159,7 @@ public class User extends RowItem implements Serializable {
 		this.Birthdate = date;
 	}
 
-	public void setAlter() {
+	public void setAlter() {	//Berechnung des Alters anhand des Geburtsdatums
 
 		GregorianCalendar heute = new GregorianCalendar();
 
@@ -174,14 +176,14 @@ public class User extends RowItem implements Serializable {
 		this.Alter = alter;
 	}
 
-	public void setAlkgehalt() {
-		AlkGehalt =0;
+	public void setAlkgehalt() {		//Alkoholgehalt aller Cocktails wird addiert
+		AlkGehalt =0.0;
 		for (int i = 0; i < cocktails.size(); i++) {
 			AlkGehalt += ((Cocktail) cocktails.get(i)).getAlkgehalt();
 		}
 	}
 
-	public void calcAlkAnteil() {
+	public void calcAlkAnteil() {  // Berechnung der Promillewerte nach Widmark-Formel: 
 
 		if (!Geschlecht) { // weibliche Berechnungsformel
 
@@ -194,7 +196,7 @@ public class User extends RowItem implements Serializable {
 
 	}
 
-	public String toString() {
+	public String toString() {	
 		return "Benutzername: " + B_Name + " Alter: " + Alter + " Größe: "
 				+ Length + " Gewicht: " + Weight + " Aktuller Promillewert: "
 				+ Promille + " Geschlecht: " + getGeschlaecht();

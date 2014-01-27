@@ -23,17 +23,20 @@ import com.example.cocktailmixxer.R;
 //@ Project : Cocktailmixxer
 //@ Date : 31.10.2013
 //@ Author : Jakob Nisin
+//@ Description: Liste mit den in der Maschine enthaltenen Säften wird angezeigt.
 public class ActivityAdmin extends Activity implements OnClickListener {
-	CM_Status status;
-	List<RowItem> safte;
-	ListView saftlist_intern;
-	static Button b1, b2, b3, b4, b5, b6, b7, b8;
-	CustomListViewAdapter adapter;
+	// Deklaration ..
+	CM_Status status;				//Status 
+	List<RowItem> safte;			// Liste der Säfte
+	ListView saftlist_intern;		// ListView
+	static Button b1, b2, b3, b4, b5, b6, b7, b8; // buttons
+	CustomListViewAdapter adapter;	// Adapter
 
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
+		// Zuweisungen
 		status = (CM_Status) getApplicationContext();
 
 		saftlist_intern = (ListView) findViewById(R.id.admin_saftintern);
@@ -42,7 +45,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		adapter = new CustomListViewAdapter(this,R.layout.activity_listitem, safte);
 		saftlist_intern.setAdapter(adapter);
 	
-
+		//Buttons werden zugewiesen
 		b1 = (Button) findViewById(R.id.admin_behalter1);
 		b2 = (Button) findViewById(R.id.admin_behalter2);
 		b3 = (Button) findViewById(R.id.admin_behalter3);
@@ -51,7 +54,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		b6 = (Button) findViewById(R.id.admin_behalter6);
 		b7 = (Button) findViewById(R.id.admin_behalter7);
 		b8 = (Button) findViewById(R.id.admin_behalter8);
-
+		//OnClickListiner werden für die Buttons definiert
 		b1.setOnClickListener(this);
 		b2.setOnClickListener(this);
 		b3.setOnClickListener(this);
@@ -61,9 +64,9 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		b7.setOnClickListener(this);
 		b8.setOnClickListener(this);
 		
-		final Builder builder = new Builder(this);
-		
-		saftlist_intern.setOnItemLongClickListener(new OnItemLongClickListener() {
+		final Builder builder = new Builder(this); //Erstellen eines Dialogs
+		//Beim "klicken" auf einer Saft in der ListView wird gefragt ob man den Saft löschen will
+		saftlist_intern.setOnItemLongClickListener(new OnItemLongClickListener() { 
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
@@ -109,39 +112,19 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		adapter.notifyDataSetChanged();
-		try{
-		List saefte = status.get_SaftList_intern();
-		String ausgabe ="Saefte;";
-		for (int i = 0; i < saefte.size(); i++) {
-			
-			try{
-			Saft temp = (Saft) saefte.get(i);
-			ausgabe = ausgabe+temp.getTitle()+"\n";
-			}
-			catch(Exception e)
-			{
-				
-			}
-		}
-
-		}
-		catch(Exception e){
-			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-		}
-		
+		adapter.notifyDataSetChanged();  //Bei wiederaufruf der Activity wird der Adapter aktualisiert 
 		super.onResume();
 		
 	}
 
 
 
-	public void onClick(View v)
+	public void onClick(View v) //Aktionen der Buttons werden definiert
 	{
 		Intent intent = new Intent(ActivityAdmin.this,SelectSaftActivity.class);
-		switch (v.getId()){
+		switch (v.getId()){             //Abfrage des Button_id's
 		case R.id.admin_behalter1:
-			intent.putExtra("Bottlenumber", "1");
+			intent.putExtra("Bottlenumber", "1");		// Buttonnummer wird der nächsten activity weitergegeben damit man weiß welchen Behälter man setzt 
 			startActivity(intent);
 			break;
 		case R.id.admin_behalter2:
@@ -175,21 +158,23 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 			
 		}
 	}
-	public void clearList(View view)
+	public void clearList(View view)  //Methode für den Clearbutton
 	{
 		Builder builder = new Builder(this);
+		//Erstellen eines Dialogs
+		//Beim "klicken" auf einer Saft in der ListView wird gefragt ob man den Saft löschen will
 		builder.setTitle("ACHTUNG!!")
 				.setIcon(android.R.drawable.ic_dialog_alert)
 				.setMessage(
 						"Sind Sie sicher dass Sie alle Säfte löschen wollen?")
-				.setPositiveButton("Löschen",
+				.setPositiveButton("Löschen",						
 						new DialogInterface.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
 								
-								for(int i=0;i<8;i++){
+								for(int i=0;i<8;i++){					//löschung aller Elemente aus der liste
 									
 									safte.set(i, new Saft("","",0));
 								}

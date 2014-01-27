@@ -88,13 +88,13 @@ public class MainActivity extends Activity {
 		
 		getMenuInflater().inflate(R.menu.context_menu, menu);
 
-		return true;// return true so to menu pop up is opens
+		return true;
 
 	}
 
 	@Override
 	protected void onStop() {
-		status.saveAll();
+		status.saveAll();			// User, Status, Cocktails, Säfte(_intern) werden auf dem Speicher gesichert.
 		super.onDestroy();
 	}
 
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		adapter.notifyDataSetChanged();
-		if (users.isEmpty()) {
+		if (users.isEmpty()) {							//Spinner wird nur angezeigt wenn es einen User gibt
 			spinnerUser.setVisibility(View.INVISIBLE);
 		} else {
 			spinnerUser.setVisibility(View.VISIBLE);
@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
-        // Set up the custom title
+        // Untertitel wird angezeigt
 		mTitle = (TextView) findViewById(R.id.title_right_text);
         mTitle.setText(R.string.app_name);
   	
@@ -130,13 +130,15 @@ public class MainActivity extends Activity {
 		spinnerUser.setAdapter(adapter);
 		spinnerUser.setSelection(adapter.getPosition(status
 				.get_ActiveUser()));
-		// Define Button **Cocktails** and On Click Action
+
+		//Buttons werden zugewiesen um auf dementesprechende Activitys zu wechseln
+		
 		Button btn_CocktailListe = (Button) findViewById(R.id.main_btnCocktails);
 		btn_CocktailListe.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this,
-						ActivityCocktailList.class)); // btnPressedCockTailsList();
+						ActivityCocktailList.class)); 
 			}
 		});
 
@@ -144,11 +146,10 @@ public class MainActivity extends Activity {
 		btn_User.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(MainActivity.this, ActivityUser.class)); // btnPressedCockTailsList();
+				startActivity(new Intent(MainActivity.this, ActivityUser.class));
 			}
 		});
 
-		// Define Button **Connect** and On Click Action
 		Button btn_Bluetooth = (Button) findViewById(R.id.main_btnConnect);
 		btn_Bluetooth.setOnClickListener(new OnClickListener() {
 			@Override
@@ -158,14 +159,25 @@ public class MainActivity extends Activity {
 			}
 
 		});
-		spinnerUser.setOnItemSelectedListener(new OnItemSelectedListener() {
+		
+		Button btn_NewCocktail = (Button) findViewById(R.id.main_btnNewCocktail);
+		btn_NewCocktail.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(MainActivity.this,
+						ActivityNewCocktail.class));
+			}
+
+		});
+		
+		spinnerUser.setOnItemSelectedListener(new OnItemSelectedListener() { //Spinner werden angeklickt
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
 				try {
-					status.set_ActiveUser((User) spinnerUser.getSelectedItem());
+					status.set_ActiveUser((User) spinnerUser.getSelectedItem()); // User werden ausgewählt
 
 				} catch (Exception e) {
 
@@ -180,19 +192,11 @@ public class MainActivity extends Activity {
 
 		});
 
-		Button btn_NewCocktail = (Button) findViewById(R.id.main_btnNewCocktail);
-		btn_NewCocktail.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				startActivity(new Intent(MainActivity.this,
-						ActivityNewCocktail.class)); // btnPressedCockTailsList();
-			}
 
-		});
 
 	}
 
-	public void gotoBenutzer() {
+	public void gotoBenutzer() {				//User Activity wird ausgewählt
 		setContentView(R.layout.activity_user);
 	}
     public boolean onOptionsItemSelected(MenuItem item) {

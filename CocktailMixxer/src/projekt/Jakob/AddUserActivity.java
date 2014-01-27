@@ -2,6 +2,7 @@ package projekt.Jakob;
 //@ Project : Cocktailmixxer
 //@ Date : 31.10.2013
 //@ Author : Jakob Nisin
+//@ Description: Neuer Benutzer wird angelegt. Name, Gewicht, Größe, Geschlecht und Geburtsdatum wird abgefragt.
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,19 +27,21 @@ import android.widget.Toast;
 import com.example.cocktailmixxer.R;
 
 public class AddUserActivity extends Activity {
+	//Deklaration ...
+	//für Editierbaren Text
 	EditText newUserLength;
 	static EditText newUserName;
 	private EditText newUserWeight;
 	private boolean newUserGesch = true;
-	private DatePicker dpResult;
-	CM_Status status;
-	static int TAKE_PICTURE = 1;
-	private Bitmap photo;
-	private ImageView userpic;
-	private static final int CAMERA_REQUEST = 1888;
-	public final static String APP_PATH_SD_CARD = "/cocktailmixxer/userpics";
+	private DatePicker dpResult;		//Datumauswahl
+	CM_Status status;					//Status
+	static int TAKE_PICTURE = 1;		//intention parameter um bild aufzunehmen
+	private Bitmap photo;				//Aufgenommenes Bild
+	private ImageView userpic;			//Bildanzeige
+	private static final int CAMERA_REQUEST = 1888;	//Anfrageparamter um auf Aufnahmemodus zu wechseln
+	public final static String APP_PATH_SD_CARD = "/cocktailmixxer/userpics";	//SpeicherOrt wird definiert
 	String fullPath = Environment.getExternalStorageDirectory()
-			.getAbsolutePath() + APP_PATH_SD_CARD;
+			.getAbsolutePath() + APP_PATH_SD_CARD;	//dito
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class AddUserActivity extends Activity {
 		status = (CM_Status) getApplicationContext();
 		setContentView(R.layout.activity_add_user);
 
-		// Declare buttons and Textfields
+		// Deklaration der editierbaren Textfelder
 		newUserName = (EditText) findViewById(R.id.user_editTextName);
 		newUserLength = (EditText) findViewById(R.id.user_edittextSize);
 		newUserWeight = (EditText) findViewById(R.id.user_edittextWeight);
@@ -54,10 +57,10 @@ public class AddUserActivity extends Activity {
 		dpResult = (DatePicker) findViewById(R.id.datePicker1);
 		userpic = (ImageView) findViewById(R.id.user_pic);
 
-		// set default datePicker date
+		// Standart Datumswert für den Datepicker wird definiert
 		dpResult.init(1990, 05, 15, null);
-		if (savedInstanceState != null) {
-
+		
+		if (savedInstanceState != null) {  //Beim Umkippen der Ansicht wird das bild korrekt angezeigt
 			Bitmap photo = savedInstanceState.getParcelable("savedImage");
 			userpic.setImageBitmap(photo);
 
@@ -65,36 +68,37 @@ public class AddUserActivity extends Activity {
 		super.onCreate(savedInstanceState);
 	}
 
-	public void addUser(View view) {
+	public void addUser(View view) {  //Aktion für "neu anlegen"button wird definiert
 		try {
-			status.add_UserItem(new User(newUserName.getText().toString(),
+			status.add_UserItem(new User(newUserName.getText().toString(), //Neuer benutzer wird angelegt und in Userliste eingefügt
 					Double.parseDouble(newUserWeight.getText().toString()),
 					Double.parseDouble(newUserLength.getText().toString()),
 					newUserGesch, new GregorianCalendar(dpResult.getYear(),
-							dpResult.getMonth() + 1, dpResult.getDayOfMonth())));
-			status.saveToSerFile("User", status.get_UserList());
-			Intent intent = new Intent(view.getContext(), ActivityUser.class);
+							dpResult.getMonth() + 1, dpResult.getDayOfMonth()))); // Abfrage der EditText felder und des Datepickers
+			status.saveToSerFile("User", status.get_UserList());				  // User wird auf internen gespeichert
+			//Aufrufen der User Activity
+			Intent intent = new Intent(view.getContext(), ActivityUser.class); 	  
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			this.startActivity(intent);
+			this.startActivity(intent);								
 
 		} catch (Exception e) {
 			Toast.makeText(getApplicationContext(),
-					"Bitte Eingaben überprüfen", Toast.LENGTH_LONG).show();
+					"Bitte Eingaben überprüfen", Toast.LENGTH_LONG).show();//falls ein Feld leer wird bekommt man ein hinweis
 		}
 
 	}
 
 	public void takePic(View view) {
 
-		// create intent with ACTION_IMAGE_CAPTURE action
+		// Erstellen einer intent mit ACTION_IMAGE_CAPTURE aktion
 		Intent cameraIntent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(cameraIntent, CAMERA_REQUEST);
+		startActivityForResult(cameraIntent, CAMERA_REQUEST); //aufrufen der Kamera
 	}
 
 	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		userpic.buildDrawingCache();
+		super.onSaveInstanceState(outState);	//bei "zerstörung" der Activity wird das Bild in der Bildanzeige temporer gespeichert, ...
+		userpic.buildDrawingCache();			//sowas passiert z.b. beim Kippen der Ansicht
 		Parcelable savedpic = Bitmap.createBitmap(userpic.getDrawingCache());
 		outState.putParcelable("savedImage", savedpic);
 		userpic.destroyDrawingCache();
@@ -105,7 +109,7 @@ public class AddUserActivity extends Activity {
 
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK
 				&& resultCode == Activity.RESULT_OK) {
-			Bitmap photo = (Bitmap) data.getExtras().get("data");
+			Bitmap photo = (Bitmap) data.getExtras().get("data");		//Bild wird von der Kamera empfangen
 			userpic.setImageBitmap(photo);
 			try {
 				File dir = new File(fullPath);
@@ -113,13 +117,10 @@ public class AddUserActivity extends Activity {
 					dir.mkdirs();
 				}
 				OutputStream fOut = null;
-				File file = new File(fullPath, CM_Status.getUserid() + ".jpg");
-				file.createNewFile();
-				fOut = new FileOutputStream(file);
-
-				// 100 means no compression, the lower you go, the stronger the
-				// compression
-				photo.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+				File file = new File(fullPath, CM_Status.getUserid() + ".jpg"); //Datei wird für das Bild definiert..
+				file.createNewFile();											//und auf dem speicher angelegt
+				fOut = new FileOutputStream(file);								//Bild von der Kamera wird in die Datei geschrieben
+				photo.compress(Bitmap.CompressFormat.JPEG, 100, fOut);			//Bild wird komprimiert
 				fOut.flush();
 				fOut.close();
 			} catch (Exception e) {
@@ -130,11 +131,8 @@ public class AddUserActivity extends Activity {
 	}
 
 	public void onRadioButtonClicked(View view) {
-		// Is the button now checked?
 		boolean checked = ((RadioButton) view).isChecked();
-
-		// Check which radio button was clicked
-		switch (view.getId()) {
+		switch (view.getId()) {				//Abfrage des Geschlechts des Users mittels Radiobutton
 		case R.id.radio0:
 			if (checked)
 				newUserGesch = true;
@@ -146,10 +144,10 @@ public class AddUserActivity extends Activity {
 		}
 	}
 	@Override
-	public void onBackPressed() {
+	public void onBackPressed() { //Die Backtastenfunktion wird überschrieben d.h. unbrauchbar gemacht 
 	}
-	public void goBack(View view) {
-		File file = new File(fullPath, CM_Status.getUserid() + ".jpg");
+	public void goBack(View view) {	//damit man nur über diese Methode zurück kommt
+		File file = new File(fullPath, CM_Status.getUserid() + ".jpg"); //Bild vom Speicher abrufen
 		try {
 			file.createNewFile();
 		} catch (IOException e) {
@@ -158,11 +156,11 @@ public class AddUserActivity extends Activity {
 		}
 		if(file.exists())
 		{
-			file.delete();
+			file.delete();				// Bild löschen
 		}
 		Intent intent = new Intent(view.getContext(), ActivityUser.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		this.startActivity(intent);
+		this.startActivity(intent);			//Zurück zur User Activity springen
 	}
 
 }

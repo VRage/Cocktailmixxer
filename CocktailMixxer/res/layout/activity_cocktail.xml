@@ -8,58 +8,72 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityCocktail" >
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:contentDescription="@string/image"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
-
-    <TextView
-        android:id="@+id/cocktail_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cocktail_desc"
-        android:layout_alignTop="@+id/icon"
-        android:text="Cocktail Name"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/cocktail_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cocktail_header"
-        android:layout_toRightOf="@+id/icon"
-        android:text="Beschreibung"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/icon"
-        android:text="Enthaltene Getränke:"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    <Button
-        android:id="@+id/Cocktail_btnOrder"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="@string/button_order"
-        android:visibility="visible" />
+        android:layout_alignParentTop="true" >
 
-    <ListView
-        android:id="@+id/Cocktail_ListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Cocktail_btnOrder"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3" >
+        <ImageView
+            android:id="@+id/Icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/White"
+            android:contentDescription="@string/image"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/cocktail_icon_lol" />
 
-    </ListView>
+        <Button
+            android:id="@+id/Cocktail_btnOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/button_order"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/cocktail_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/Icon"
+            android:text="Cocktail Name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Icon"
+            android:layout_centerHorizontal="true"
+            android:text="Enthaltene Getränke:"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/cocktail_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cocktail_header"
+            android:layout_below="@+id/cocktail_header"
+            android:text="Beschreibung"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ListView
+            android:id="@+id/Cocktail_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Cocktail_btnOrder"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/Icon" >
+
+        </ListView>
+
+    </RelativeLayout>
 
 </RelativeLayout>
