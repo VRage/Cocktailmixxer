@@ -50,6 +50,9 @@ public class ActivityCocktailList extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				if(switcher.isChecked())
+					status.set_ActiveCocktail((Cocktail) status.get_CocktailListOrderable().get(arg2));
+				else
 				status.set_ActiveCocktail((Cocktail) status.get_CocktailList().get(arg2));
 				startActivity(new Intent(ActivityCocktailList.this, ActivityCocktail.class));
 				
@@ -119,11 +122,11 @@ public class ActivityCocktailList extends Activity {
 						for (int j = 0; j < saftliste.size(); j++) {
 							if(status.get_SaftList_intern().contains(saftliste.get(j)))
 							{
-								Toast.makeText(getApplicationContext(), "Saft enthalten !!", Toast.LENGTH_SHORT).show();
+								
 							}
 							else{ 
 								allSaftincluded = false;	
-								Toast.makeText(getApplicationContext(), "Saft niiiiicht enthalten !!", Toast.LENGTH_SHORT).show();
+								
 								
 							}
 							
