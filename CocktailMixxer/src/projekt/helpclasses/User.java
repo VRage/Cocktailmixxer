@@ -183,7 +183,7 @@ public class User extends RowItem implements Serializable {
 		}
 	}
 
-	public void calcAlkAnteil() {  // Berechnung der Promillewerte nach Widmark-Formel: 
+	public void calcAlkAnteil() {  // Berechnung der Promillewerte nach Watson-Formel: 
 
 		if (!Geschlecht) { // weibliche Berechnungsformel
 
