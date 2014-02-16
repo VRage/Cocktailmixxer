@@ -1,10 +1,12 @@
 package projekt.Matze;
 
+import org.achartengine.chart.PieChart;
+
 import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
-import projekt.helpclasses.Cocktail;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -28,6 +30,7 @@ public class ActivityCocktail extends Activity {
 	TextView Desc;
 	BluetoothSerialService service;
 	Button order;
+	Button graph;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class ActivityCocktail extends Activity {
 		Header.setText(status.get_ActiveCocktail().getTitle());
 		Desc = (TextView)findViewById(R.id.cocktail_desc);
 		Desc.setText(status.get_ActiveCocktail().getDesc());
-		
+		graph = (Button) findViewById(R.id.cocktail_graph); 
 		
 		
 		lw.setOnItemClickListener(new OnItemClickListener() {
@@ -72,6 +75,16 @@ public class ActivityCocktail extends Activity {
 					status.get_ActiveUser().calcAlkAnteil();
 				}
 				finish();
+			}
+		});
+		graph.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PieGraph pie = new PieGraph();
+				Intent lineIntend = pie.getIntent(getApplicationContext());
+				startActivity(lineIntend);
 			}
 		});
 	}
@@ -105,5 +118,7 @@ public class ActivityCocktail extends Activity {
 		super.onResume();
 	}
 	}
+	
+
 
 }

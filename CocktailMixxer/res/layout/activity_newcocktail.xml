@@ -79,11 +79,12 @@
         android:id="@+id/newCocktail_editTextDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/icon"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/newCocktail_editTextName"
         android:layout_toRightOf="@+id/icon"
         android:layout_weight="5.03"
         android:ems="10"
         android:hint="Beschreibung"
         android:inputType="textMultiLine" />
+
 </RelativeLayout>
