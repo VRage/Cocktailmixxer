@@ -76,7 +76,7 @@ public class SelectSaftActivity extends Activity {
 					}
 				}
 				if (!hat) {
-					safte_intern.set(bottlenumber - 1, status
+					safte_intern.set(bottlenumber, status
 							.get_SaftList_all().get(arg2)); // ausgewählter Saft
 															// wird in die Liste
 															// für die Maschine

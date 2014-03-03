@@ -6,6 +6,7 @@ import projekt.OwnList.CustomListViewAdapter;
 import projekt.OwnList.RowItem;
 import projekt.helpclasses.CM_Status;
 import projekt.helpclasses.Saft;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -14,9 +15,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
 import com.example.cocktailmixxer.R;
@@ -45,27 +49,29 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 		adapter = new CustomListViewAdapter(this,R.layout.activity_listitem, safte);
 		saftlist_intern.setAdapter(adapter);
 	
-		//Buttons werden zugewiesen
-		b1 = (Button) findViewById(R.id.admin_behalter1);
-		b2 = (Button) findViewById(R.id.admin_behalter2);
-		b3 = (Button) findViewById(R.id.admin_behalter3);
-		b4 = (Button) findViewById(R.id.admin_behalter4);
-		b5 = (Button) findViewById(R.id.admin_behalter5);
-		b6 = (Button) findViewById(R.id.admin_behalter6);
-		b7 = (Button) findViewById(R.id.admin_behalter7);
-		b8 = (Button) findViewById(R.id.admin_behalter8);
-		//OnClickListiner werden für die Buttons definiert
-		b1.setOnClickListener(this);
-		b2.setOnClickListener(this);
-		b3.setOnClickListener(this);
-		b4.setOnClickListener(this);
-		b5.setOnClickListener(this);
-		b6.setOnClickListener(this);
-		b7.setOnClickListener(this);
-		b8.setOnClickListener(this);
+		TabHost thost = (TabHost) findViewById(R.id.tabhost);
+		thost.setup();
+		TabSpec spec = thost.newTabSpec("tag1");
+		spec.setContent(R.id.Behaelter);
+		spec.setIndicator("Behälter");
+		thost.addTab(spec);
+		spec = thost.newTabSpec("tag2");
+		spec.setContent(R.id.Einstellungen);
+		spec.setIndicator("Einstellungen");
+		thost.addTab(spec);
 		
 		final Builder builder = new Builder(this); //Erstellen eines Dialogs
 		//Beim "klicken" auf einer Saft in der ListView wird gefragt ob man den Saft löschen will
+		saftlist_intern.setOnItemClickListener(new OnItemClickListener() {
+			Intent intent = new Intent(ActivityAdmin.this,SelectSaftActivity.class);
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				intent.putExtra("Bottlenumber", ""+arg2);
+				startActivity(intent);
+				
+			}
+		});
 		saftlist_intern.setOnItemLongClickListener(new OnItemLongClickListener() { 
 
 			@Override
@@ -119,45 +125,7 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 
 
 
-	public void onClick(View v) //Aktionen der Buttons werden definiert
-	{
-		Intent intent = new Intent(ActivityAdmin.this,SelectSaftActivity.class);
-		switch (v.getId()){             //Abfrage des Button_id's
-		case R.id.admin_behalter1:
-			intent.putExtra("Bottlenumber", "1");		// Buttonnummer wird der nächsten activity weitergegeben damit man weiß welchen Behälter man setzt 
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter2:
-			intent.putExtra("Bottlenumber", "2");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter3:
-			intent.putExtra("Bottlenumber", "3");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter4:
-			intent.putExtra("Bottlenumber", "4");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter5:
-			intent.putExtra("Bottlenumber", "5");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter6:
-			intent.putExtra("Bottlenumber", "6");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter7:
-			intent.putExtra("Bottlenumber", "7");
-			startActivity(intent);
-			break;
-		case R.id.admin_behalter8:
-			intent.putExtra("Bottlenumber", "8");
-			startActivity(intent);
-			break;
-			
-		}
-	}
+	
 	public void clearList(View view)  //Methode für den Clearbutton
 	{
 		Builder builder = new Builder(this);
@@ -194,5 +162,13 @@ public class ActivityAdmin extends Activity implements OnClickListener {
 							}
 						}).show();
 
+	}
+
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 }
