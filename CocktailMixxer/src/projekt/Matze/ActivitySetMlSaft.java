@@ -5,6 +5,7 @@ import projekt.helpclasses.Cocktail;
 import projekt.helpclasses.Saft;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,126 +21,128 @@ import com.example.cocktailmixxer.R;
 //@ Author : Matthias Wildberg
 public class ActivitySetMlSaft extends Activity {
 	CM_Status status;
-	SeekBar seekbarValueMl;
+	SeekBar seekbar;
 	TextView MlLeft;
 	TextView MlActual;
 	TextView title;
 	Button NewSaft;
+	Button delete;
 	Cocktail cocktail;
 	Saft saft;
+	int Progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_addsaft);
-		
+		// hole Attribute 
 		status = (CM_Status) getApplicationContext();
-		seekbarValueMl = (SeekBar) findViewById(R.id.addSaft_seekbar);
+		cocktail = status.get_ActiveCocktail();
 		saft = status.get_ActiveCocktail().getActiveSaft();
+		
+		//definiere GUI Elemente 
+		seekbar = (SeekBar) findViewById(R.id.addSaft_seekbar);
 		title= (TextView) findViewById(R.id.addsaft_title);
-		title.setText("Menge für "+saft.getTitle() + " wählen.");
 		MlLeft = (TextView) findViewById(R.id.addSaft_textViewMlLeft);
 		MlActual = (TextView) findViewById(R.id.addSaft_textViewMlActual);
-		NewSaft = (Button) findViewById(R.id.addSaft_ButtonNewSaft);
-		cocktail = status.get_ActiveCocktail();
-		seekbarValueMl.setMax(cocktail.cocktailsize);
-		
-
-		// Setze menge auf Progress
-		seekbarValueMl.setProgress(cocktail.cocktailsize-cocktail.getMlLeft());
-		int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
-		// Set default text of textView
-		MlLeft.setText("Verfügbare Menge:" +(cocktail.cocktailsize- cocktail.getMlLeft()));
-		MlActual.setText("Aktuelle Menge:" + Progress);
-
-		seekbarValueMl
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int MlLeftv = cocktail.getMlLeft();
-					int cocktailsize = cocktail.cocktailsize;
-					@Override
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-						int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-MlLeftv);
-
-						//Die Progressbar darf nicht weniger werden als der Cocktail schon zur verfügung hat 
-						if (Progress < 0)
-							seekbarValueMl.setProgress(cocktail.cocktailsize-MlLeftv);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						// hole aktuellen Prozessstatus
-						int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-MlLeftv);
-						
-
-						// Grenzen setzen darf nicht kleiner sein als aktuell
-						// noch verfügbar und nicht größer sein als cocktail
-
-
-						// Setze textfelder
-						MlLeft.setText("Verfügbare Menge:\t\t"
-								+ (MlLeftv - Progress)+" ml");
-						MlActual.setText("Aktuelle Menge:\t\t" + Progress+" ml");
-
-					}
-
-				});
-		
-
-
-		NewSaft.setOnClickListener(new OnClickListener() {
-
-			/*
-			 * Setze On ClickListener für "Neu Anlegen
-			 * 
-			 * Setzt interne SaftMl auf den Progress wert 
-			 * Setzt Die Die Verbleibenden Ml des Cocktails 
-			 * Addet den Saft zur cocktailListe 
-			 */
-
-
-
+		delete = (Button) findViewById(R.id.addSaft_delete);
+		delete.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				int Progress = seekbarValueMl.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
-				
-				if(Progress >= 10){
-				//Toast.makeText(getApplicationContext(), Progress+"", Toast.LENGTH_LONG).show();
-				saft.setMl(Progress);
-				cocktail.setMlLeft(cocktail.getMlLeft()-Progress);
-
-
-				cocktail.addSaft((Saft) saft);
+				cocktail.get_SaftList_cocktail().remove(saft);
 				finish();
-				}
-				else 
-				{
-					Toast.makeText(getApplicationContext(), "getränk muss mindestens 10 ml enthalten", Toast.LENGTH_LONG).show();
-				}
+			}
+		});
+		NewSaft = (Button) findViewById(R.id.addSaft_ButtonNewSaft);
+		NewSaft.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ButtonClickAction();
+			}
+		});
+		seekbar.setMax(cocktail.cocktailsize);
+		seekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				if(Progress<0)
+					seekbar.setProgress(cocktail.cocktailsize-cocktail.getMlLeft());
+			}
+			
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				setTextfields();
+				
 			}
 		});
 	}
-
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_saft, menu);
-		return true;
+	protected void onResume() { //DO NOT TOUCH ! 
+		// Setzte Cocktail ml left - ml des aktuellen Saftes 
+		//und setzte textfelder 
+		cocktail = status.get_ActiveCocktail();
+		saft = status.get_ActiveCocktail().getActiveSaft();
+		//Seetzte verbleibende Ml 
+		cocktail.setMlLeft((int) (cocktail.getMlLeft()+saft.getMl()));
+		//setzte seekbar auf verbleibende ml 
+		seekbar.setProgress(cocktail.cocktailsize-cocktail.getMlLeft());
+		setTextfields();
+		
+		//Wenn Cocktail bereits in Liste kannn er mittels Button gelöscht werden 
+		if(cocktail.get_SaftList_cocktail().contains(saft))
+			delete.setVisibility(Button.VISIBLE);
+		else
+			delete.setVisibility(Button.INVISIBLE);
+		super.onResume();
+		
 	}
-
 	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		// saft.setdescNormal();
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK){
+			cocktail.setMlLeft((int) (cocktail.getMlLeft()-saft.getMl()));
+		}
+		return super.onKeyDown(keyCode, event);
 	}
-
+	private void setTextfields(){
+		CalcProgress();
+		MlLeft.setText("Verfügbare Menge: "+(cocktail.getMlLeft()-Progress)+"ml ");
+		MlActual.setText("Enthaltene Menge: "+Progress+"ml ");
+	}
+	private void CalcProgress(){
+		Progress = seekbar.getProgress()-(cocktail.cocktailsize-cocktail.getMlLeft());
+	}
+	private  void ButtonClickAction(){
+		CalcProgress();
+		
+		if(Progress <10)
+			Toast.makeText(getApplicationContext(), "Bitte Wert größer als 10 ml eingeben", Toast.LENGTH_LONG).show();
+		else if(cocktail.get_SaftList_cocktail().contains(saft)){
+			saft.setMl(Progress);
+			cocktail.setMlLeft((int) (cocktail.getMlLeft()-saft.getMl()));	
+			saft.setdescNormal();
+			finish();
+		}
+		else 
+		{
+			saft.setMl(Progress);
+			cocktail.setMlLeft((int) (cocktail.getMlLeft()-saft.getMl()));
+			cocktail.get_SaftList_cocktail().add(saft);
+			saft.setdescNormal();
+			finish();
+		}
+			
+		
+	}
 }

@@ -2,9 +2,13 @@ package projekt.Matze;
 
 import org.achartengine.chart.PieChart;
 
+import projekt.Activitys.MainActivity;
+import projekt.Jakob.ActivityUser;
 import projekt.OwnList.CustomListViewAdapter;
 import projekt.helpclasses.BluetoothSerialService;
 import projekt.helpclasses.CM_Status;
+import projekt.helpclasses.Cocktail;
+import projekt.helpclasses.Saft;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +35,7 @@ public class ActivityCocktail extends Activity {
 	BluetoothSerialService service;
 	Button order;
 	Button graph;
+	Button newSaft;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
@@ -48,6 +53,16 @@ public class ActivityCocktail extends Activity {
 		Desc = (TextView)findViewById(R.id.cocktail_desc);
 		Desc.setText(status.get_ActiveCocktail().getDesc());
 		graph = (Button) findViewById(R.id.cocktail_graph); 
+		newSaft = (Button) findViewById(R.id.cocktail_newSaft);
+		newSaft.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(ActivityCocktail.this,
+						ActivityAddSaft.class));
+				
+			}
+		});
 		
 		
 		lw.setOnItemClickListener(new OnItemClickListener() {
@@ -55,9 +70,10 @@ public class ActivityCocktail extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
-				
-				//status.set_ActiveSaft((Saft) CLVA.getItem(arg2));
+				Toast.makeText(getApplicationContext(), "text", Toast.LENGTH_LONG).show();
+				//status.set_ActiveCocktail((Cocktail) lw.getItemAtPosition(arg2));
+				status.get_ActiveCocktail().setActiveSaft((Saft) lw.getItemAtPosition(arg2));
+				startActivity(new Intent(ActivityCocktail.this, ActivitySetMlSaft.class));
 				
 			}
 		});
@@ -98,7 +114,7 @@ public class ActivityCocktail extends Activity {
 	}
 	@Override
 	protected void onResume() {
-		
+		CLVA.notifyDataSetChanged();
 		boolean allSaftincluded = true;
 		
 		

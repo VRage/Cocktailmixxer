@@ -55,19 +55,23 @@ public class ActivityNewCocktail extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				status.set_ActiveCocktail(buildetCocktail);
 				// Hole angeklickten cocktail 
+				status.set_ActiveCocktail(buildetCocktail);
+				startActivity(new Intent(ActivityNewCocktail.this,
+						ActivitySetMlSaft.class));
+				status.get_ActiveCocktail().setActiveSaft((Saft) SaefteCocktail.getItemAtPosition(arg2));
+				/*
 				Saft safttemp = (Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2);
-				//Reseten der ml 
+				//Reseten der ml // WARUM ?! 
 				status.get_ActiveCocktail()
 						.setMlLeft(
 								status.get_ActiveCocktail().getMlLeft()+safttemp.getMl()
 								);
-				((Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2)).setMl(0);
+				//((Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2)).setMl(0);
 						
 				startActivity(new Intent(ActivityNewCocktail.this,
 						ActivitySetMlSaft.class));
-
+*/
 			}
 		});
 	}

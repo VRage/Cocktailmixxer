@@ -12,7 +12,6 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
@@ -27,15 +26,6 @@
             android:paddingRight="10dp"
             android:src="@drawable/cocktail_icon_lol" />
 
-        <Button
-            android:id="@+id/Cocktail_btnOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="@string/button_order"
-            android:visibility="visible" />
-
         <TextView
             android:id="@+id/cocktail_header"
             android:layout_width="wrap_content"
@@ -44,15 +34,6 @@
             android:layout_toRightOf="@+id/Icon"
             android:text="Cocktail Name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/Icon"
-            android:layout_centerHorizontal="true"
-            android:text="Enthaltene Getränke:"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/cocktail_desc"
@@ -65,30 +46,57 @@
 
         <ListView
             android:id="@+id/Cocktail_ListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/Cocktail_btnOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="300sp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/Icon" >
-
         </ListView>
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cocktail_desc"
+            android:layout_below="@+id/cocktail_desc"
+            android:text="Enthaltene Getränke:"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
 
-    <ViewAnimator
-        android:id="@+id/viewAnimator1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout1"
-        android:layout_toRightOf="@+id/relativeLayout1" >
-    </ViewAnimator>
-
-    <Button
-        android:id="@+id/cocktail_graph"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="Graph anzeigen" />
+        android:layout_below="@+id/relativeLayout1"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/cocktail_newSaft"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_MakeNew" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/cocktail_graph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Graph anzeigen" />
+
+            <Button
+                android:id="@+id/Cocktail_btnOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_order"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
