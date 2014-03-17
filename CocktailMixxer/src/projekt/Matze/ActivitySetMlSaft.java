@@ -27,6 +27,8 @@ public class ActivitySetMlSaft extends Activity {
 	TextView title;
 	Button NewSaft;
 	Button delete;
+	Button up;
+	Button down;
 	Cocktail cocktail;
 	Saft saft;
 	int Progress;
@@ -47,6 +49,28 @@ public class ActivitySetMlSaft extends Activity {
 		MlLeft = (TextView) findViewById(R.id.addSaft_textViewMlLeft);
 		MlActual = (TextView) findViewById(R.id.addSaft_textViewMlActual);
 		delete = (Button) findViewById(R.id.addSaft_delete);
+		up = (Button) findViewById(R.id.addSaft_up);
+		up.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				seekbar.setProgress(seekbar.getProgress()+1);
+				setTextfields();
+				
+			}
+		});
+		down = (Button) findViewById(R.id.addSaft_down);
+		down.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				seekbar.setProgress(seekbar.getProgress()-1);
+				setTextfields();
+				if(Progress <0)
+					seekbar.setProgress(cocktail.cocktailsize-cocktail.getMlLeft());
+				
+			}
+		});
 		delete.setOnClickListener(new OnClickListener() {
 			
 			@Override

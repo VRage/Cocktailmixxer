@@ -123,14 +123,21 @@ public class ActivityCocktail extends Activity {
 			else				allSaftincluded = false;
 			
 
-		if(allSaftincluded)
-			order.setVisibility(View.VISIBLE);
-		else
-			order.setVisibility(View.INVISIBLE);
-		if(service.getState()!=BluetoothSerialService.STATE_CONNECTED)
+		if(!allSaftincluded){
+			order.setText("Maschine fehlt ein Getränk");
+			order.setClickable(false);
+			order.setTextColor(getResources().getColor(R.color.RED));
+		}
+		else if(service.getState()!=BluetoothSerialService.STATE_CONNECTED){
 			order.setText("noch nicht connected");
-		else 
+			order.setClickable(false);
+			order.setTextColor(getResources().getColor(R.color.RED));
+		}
+		else {
+			order.setClickable(true);
 			order.setText("Bestellen");
+			order.setTextColor(getResources().getColor(R.color.GREEN));
+		}
 		super.onResume();
 	}
 	}

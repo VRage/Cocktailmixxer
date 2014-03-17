@@ -40,7 +40,8 @@ public class ActivityNewCocktail extends Activity {
 		setContentView(R.layout.activity_newcocktail);
 		Icon = (ImageView) findViewById(R.drawable.cocktail_icon_lol);
 		newSaft = (Button) findViewById(R.id.Cocktail_btnOrder);
-		SaefteCocktail = (ListView) findViewById(R.id.newCocktail_listSaefte);
+		SaefteCocktail = (ListView) findViewById(R.id.newCocktail_listSaefte3);
+		//SaefteCocktail = (ListView) findViewById(R.id.newCocktail_listSaefte);
 		status = (CM_Status) getApplicationContext();
 		status.set_ActiveCocktail(buildetCocktail);
 		CLWA = new CustomListViewAdapter(this, R.layout.activity_listitem,
@@ -60,18 +61,7 @@ public class ActivityNewCocktail extends Activity {
 				startActivity(new Intent(ActivityNewCocktail.this,
 						ActivitySetMlSaft.class));
 				status.get_ActiveCocktail().setActiveSaft((Saft) SaefteCocktail.getItemAtPosition(arg2));
-				/*
-				Saft safttemp = (Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2);
-				//Reseten der ml // WARUM ?! 
-				status.get_ActiveCocktail()
-						.setMlLeft(
-								status.get_ActiveCocktail().getMlLeft()+safttemp.getMl()
-								);
-				//((Saft) status.get_ActiveCocktail().get_SaftList_cocktail().get(arg2)).setMl(0);
-						
-				startActivity(new Intent(ActivityNewCocktail.this,
-						ActivitySetMlSaft.class));
-*/
+
 			}
 		});
 	}

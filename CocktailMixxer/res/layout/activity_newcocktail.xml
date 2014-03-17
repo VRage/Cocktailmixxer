@@ -9,6 +9,8 @@
         android:id="@+id/list_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/addSaft_textViewMlActual"
         android:text="@string/button_NeuerCocktail"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -19,32 +21,33 @@
         android:text=" "
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/newCocktail_btnBestellen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:onClick="newcocktails_onClickOrder"
-        android:text="@string/button_MakeNew" />
-
     <ListView
-        android:id="@+id/newCocktail_listSaefte"
+        android:id="@+id/newCocktail_listSaefte3"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_above="@+id/newCocktail_btnBestellen"
         android:layout_alignParentLeft="true"
-        android:layout_weight="7.35" >
+        android:layout_below="@+id/newCocktail_editTextDesc"
+         >
 
     </ListView>
 
+    <EditText
+        android:id="@+id/newCocktail_editTextDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newCocktail_editTextName"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/newCocktail_editTextName"
+        android:ems="10"
+        android:hint="Beschreibung"
+        android:inputType="textMultiLine" />
+
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_above="@+id/newCocktail_btnNewSaft"
-        android:layout_alignParentLeft="true"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignLeft="@+id/list_textView"
         android:layout_below="@+id/list_textView"
         android:background="@color/White"
         android:contentDescription="@string/image"
@@ -56,8 +59,9 @@
         android:id="@+id/newCocktail_editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/newCocktail_editTextDesc"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/icon"
+        android:layout_toRightOf="@+id/icon"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Name" >
@@ -66,25 +70,21 @@
     </EditText>
 
     <Button
+        android:id="@+id/newCocktail_btnBestellen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="newcocktails_onClickOrder"
+        android:text="@string/button_MakeNew" />
+
+    <Button
         android:id="@+id/newCocktail_btnNewSaft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/newCocktail_listSaefte"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/newCocktail_btnBestellen"
         android:onClick="newCocktail_OnClick_newSaft"
         android:text="@string/button_newSaft" />
-
-    <EditText
-        android:id="@+id/newCocktail_editTextDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/newCocktail_editTextName"
-        android:layout_toRightOf="@+id/icon"
-        android:layout_weight="5.03"
-        android:ems="10"
-        android:hint="Beschreibung"
-        android:inputType="textMultiLine" />
 
 </RelativeLayout>

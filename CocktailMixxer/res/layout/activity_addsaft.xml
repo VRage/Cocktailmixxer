@@ -38,47 +38,67 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" >
-
-        <Button
-            android:id="@+id/addSaft_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_delete" />
-
-        <Button
-            android:id="@+id/addSaft_ButtonNewSaft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_MakeNew" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignLeft="@+id/addSaft_textViewMlActual"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/addSaft_textViewMlActual" >
 
-        <ImageView
-            android:id="@+id/Icon"
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/glas" />
+            android:layout_height="wrap_content" >
 
-        <SeekBar
-            android:id="@+id/addSaft_seekbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:rotation="270" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/glas" />
+
+            <SeekBar
+                android:id="@+id/addSaft_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:rotation="270" />
+
+            <Button
+                android:id="@+id/addSaft_up"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="↑" />
+
+            <Button
+                android:id="@+id/addSaft_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:text="@string/button_delete" />
+
+            <Button
+                android:id="@+id/addSaft_ButtonNewSaft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/addSaft_delete"
+                android:text="@string/button_MakeNew" />
+
+            <Button
+                android:id="@+id/addSaft_down"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/addSaft_up"
+                android:text="↓" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
