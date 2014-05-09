@@ -34,7 +34,7 @@ import android.widget.Toast;
 import com.example.cocktailmixxer.R;
 
 public class ActivityUser extends Activity {
-	//Deklaration ...
+	//Deklaration ... test test stest
 	Button newUser;			// Neuer benutzer Button
 	CM_Status status;		// status
 	List<RowItem> users;	// Userliste
