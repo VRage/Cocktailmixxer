@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_horizontal"
+    android:gravity="top" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/bluetooth_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/title_bluetooth"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/text_bluetoothfound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bluetooth_title"
+        android:text="@string/bluetooth_textviewDevices"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bluetooth_btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/text_bluetoothfound"
+        android:text="@string/butteon_Search"
+        android:onClick="searchDevices" />
+
+    <Button
+        android:id="@+id/bluetoot_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/bluetooth_btn_search"
+        android:text="@string/button_back"
+        android:onClick="goBack" />
+
+    <Switch
+        android:id="@+id/bluetoot_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bluetooth_btn_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/title_bluetooth"
+
+        />
+
+    <ListView
+        android:id="@+id/bluetooth_listpaired"
+        android:layout_width="match_parent"
+        android:layout_height="182dp"
+        android:layout_above="@+id/bluetoot_switch"
+        android:layout_alignParentLeft="true" 
+        >
+    </ListView>
+
+    <TextView
+        android:id="@+id/addsaft_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bluetooth_listpaired"
+        android:layout_alignParentLeft="true"
+        android:text="@string/bluetooth_textviewPreFoundDevices"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/bluetooth_listegefunden"
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:layout_above="@+id/addsaft_title"
+        android:layout_alignParentLeft="true" >
+    </ListView>
+
+</RelativeLayout>
